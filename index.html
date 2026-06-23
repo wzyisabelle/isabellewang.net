@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isabelle Wang Ziyu</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      min-height: 100vh;
+      padding: 48px;
+    }
+
+    header {
+      text-align: center;
+      padding: 24px 0 96px;
+      font-size: 18px;
+      letter-spacing: 0.01em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 56px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .work {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: #d8d8d8;
+      display: block;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .work:hover .work-overlay {
+      opacity: 1;
+    }
+
+    .work-overlay .title {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .work-overlay .meta {
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 32px; }
+      header { padding: 16px 0 64px; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+
+    @media (max-width: 500px) {
+      .grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>Isabelle Wang Ziyu</header>
+  <main class="grid">
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+    <a href="work.html" class="work">
+      <div class="work-overlay">
+        <div class="title">title</div>
+        <div class="meta">2026 · installation</div>
+      </div>
+    </a>
+  </main>
+</body>
+</html>
