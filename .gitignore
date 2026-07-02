@@ -1,0 +1,16 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Working documents (drafts, notes)
+content.md
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.tmp
