@@ -30,7 +30,7 @@
       color: #111111;
       min-height: 100vh;
       padding: 48px;
-      padding-top: 96px;
+      padding-top: 80px; /* nav height only — columns control their own top gap */
     }
 
     /* ── NAV ── */
@@ -48,7 +48,6 @@
       align-items: end;
       padding: 0 48px 14px;
       font-family: 'NeutraText', Arial, sans-serif;
-      font-size: 14px;
       color: #111111;
     }
 
@@ -138,11 +137,12 @@
 
     .project-left {
       position: sticky;
-      top: 96px;
+      top: 80px;            /* sticks just under the nav */
       align-self: start;
       display: flex;
       flex-direction: column;
       gap: 24px;
+      padding-top: 38px;   /* ← left column top gap — edit here */
     }
 
     .project-title {
@@ -159,6 +159,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      padding-top: 16px;   /* ← right column top gap — edit here */
     }
 
     .project-right img {
