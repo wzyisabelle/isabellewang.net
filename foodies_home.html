@@ -4,167 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Foodies' Home — Isabelle WANG ZIYU</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    @font-face {
-      font-family: 'NeutraText';
-      src: url('assets/fonts/NeutraText-BookAlt.otf') format('opentype');
-    }
-
-    @font-face {
-      font-family: 'NeutraTextDemi';
-      src: url('assets/fonts/NeutraText-DemiAlt.otf') format('opentype');
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scrollbar-gutter: stable; }
-
-    body {
-      font-family: 'NeutraText', Arial, sans-serif;
-      background: #ffffff;
-      color: #111111;
-      min-height: 100vh;
-      padding: 48px;
-      padding-top: 96px;
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 80px;
-      background: #ffffff;
-      border-bottom: 1px solid #111111;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: end;
-      padding: 0 48px 14px;
-      font-family: 'NeutraText', Arial, sans-serif;
-      color: #111111;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: flex-end;
-      gap: 32px;
-      justify-self: start;
-    }
-
-    .nav-name {
-      font-family: 'NeutraTextDemi', Arial, sans-serif;
-      font-size: 24px;
-      color: #111111;
-      white-space: nowrap;
-      justify-self: center;
-    }
-
-    .nav-link {
-      font-size: 16px;
-      color: #111111;
-      text-decoration: none;
-    }
-
-    .nav-link:hover {
-      opacity: 0.5;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: flex-end;
-      gap: 16px;
-      justify-self: end;
-    }
-
-    .nav-icon {
-      display: flex;
-      align-items: flex-end;
-      opacity: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-icon:hover {
-      opacity: 0.5;
-    }
-
-    .nav-icon img {
-      width: 18px;
-      height: 18px;
-      display: block;
-    }
-
-    /* ── PAGER ── */
-    .nav-pager {
-      display: flex;
-      align-items: flex-end;
-      gap: 24px;
-    }
-
-    .nav-pager a {
-      font-size: 16px;
-      color: #111111;
-      text-decoration: none;
-    }
-
-    .nav-pager a:hover {
-      opacity: 0.5;
-    }
-
-    .nav-divider {
-      width: 1px;
-      height: 16px;
-      background: #111111;
-      align-self: flex-end;
-      margin: 0 16px;
-    }
-    /* ── END NAV ── */
-
-    /* ── PROJECT LAYOUT ── */
-    .project {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 48px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .project-left {
-      position: sticky;
-      top: 96px;
-      align-self: start;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .project-title {
-      font-family: 'NeutraTextDemi', Arial, sans-serif;
-      font-size: 32px;
-    }
-
-    .project-desc {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .project-meta {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
+    /* 2 images per row for this page */
     .project-right {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
-
-    .project-right img {
-      width: 100%;
-      display: block;
-    }
-    /* ── END PROJECT LAYOUT ── */
   </style>
 </head>
 <body>
@@ -176,8 +23,8 @@
     <span class="nav-name">Isabelle WANG ZIYU</span>
     <div class="nav-right">
       <div class="nav-pager">
-        <a href="#">&lt;&lt; Previous</a>
-        <a href="#">Next &gt;&gt;</a>
+        <a href="father_daughter.html">&lt;&lt; Previous</a>
+        <a href="fish_steak.html">Next &gt;&gt;</a>
       </div>
       <div class="nav-divider"></div>
       <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>

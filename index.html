@@ -4,99 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isabelle WANG ZIYU</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    @font-face {
-      font-family: 'NeutraText';
-      src: url('assets/fonts/NeutraText-BookAlt.otf') format('opentype');
-    }
-
-    @font-face {
-      font-family: 'NeutraTextDemi';
-      src: url('assets/fonts/NeutraText-DemiAlt.otf') format('opentype');
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scrollbar-gutter: stable; }
-
-    body {
-      font-family: 'NeutraText', Arial, sans-serif;
-      background: #ffffff;
-      color: #111111;
-      min-height: 100vh;
-      padding: 48px;
-      padding-top: 96px;  /* 80px nav + 16px = same as grid gap ← edit here */
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 80px;                  /* ← nav height */
-      background: #ffffff;
-      border-bottom: 1px solid #111111;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: end;
-      padding: 0 48px 14px;
-      font-family: 'NeutraText', Arial, sans-serif;
-      color: #111111;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: flex-end;
-      gap: 32px;
-      justify-self: start;
-    }
-
-    .nav-name {
-      font-family: 'NeutraTextDemi', Arial, sans-serif;
-      font-size: 24px;        /* ← name font size */
-      color: #111111;
-      text-decoration: none;
-      white-space: nowrap;
-      justify-self: center;
-    }
-
-    .nav-link {
-      font-size: 16px;        /* ← Artworks / Bio font size */
-      color: #111111;
-      text-decoration: none;
-    }
-
-    .nav-link:hover {
-      opacity: 0.5;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: flex-end;
-      gap: 16px;
-      justify-self: end;
-    }
-
-    .nav-icon {
-      display: flex;
-      align-items: flex-end;
-      opacity: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-icon:hover {
-      opacity: 0.5;
-    }
-
-    .nav-icon img {
-      width: 18px;
-      height: 18px;
-      display: block;
-    }
-    /* ── END NAV ── */
-
+    body { padding-top: 96px; }  /* 80px nav + 16px = same as grid gap ← edit here */
 
     .grid {
       display: grid;
@@ -172,7 +82,7 @@
     </div>
   </nav>
   <main class="grid">
-    <a href="work.html" class="work">
+    <a href="aloe.html" class="work">
       <img class="work-cover" src="assets/images/covers/aloe.jpg" alt="" />
       <div class="work-overlay">
         <div class="title">Alternative Aloe</div>
@@ -207,13 +117,6 @@
         <div class="meta">2025</div>
       </div>
     </a>
-    <a href="work.html" class="work">
-      <img class="work-cover" src="assets/images/covers/Machine_Vision_Playground.jpg" alt="" />
-      <div class="work-overlay">
-        <div class="title">Machine Vision Playground</div>
-        <div class="meta">2025</div>
-      </div>
-    </a>
     <a href="pieces_of_time.html" class="work">
       <img class="work-cover" src="assets/images/covers/Pieces_of_Time.png" alt="" />
       <div class="work-overlay">
@@ -233,13 +136,6 @@
       <div class="work-overlay">
         <div class="title">Vernal Soirée</div>
         <div class="meta">2023</div>
-      </div>
-    </a>
-    <a href="work.html" class="work">
-      <img class="work-cover" src="assets/images/covers/nike.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">NIKE</div>
-        <div class="meta">2022–2023</div>
       </div>
     </a>
     <a href="father_daughter.html" class="work">

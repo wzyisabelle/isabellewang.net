@@ -4,101 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bio — Isabelle WANG ZIYU</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    @font-face {
-      font-family: 'NeutraText';
-      src: url('assets/fonts/NeutraText-BookAlt.otf') format('opentype');
-    }
-
-    @font-face {
-      font-family: 'NeutraTextDemi';
-      src: url('assets/fonts/NeutraText-DemiAlt.otf') format('opentype');
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scrollbar-gutter: stable; }
-
-    body {
-      font-family: 'NeutraText', Arial, sans-serif;
-      background: #ffffff;
-      color: #111111;
-      min-height: 100vh;
-      padding: 48px;
-      padding-top: 96px;
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 80px;
-      background: #ffffff;
-      border-bottom: 1px solid #111111;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: end;
-      padding: 0 48px 14px;
-      font-family: 'NeutraText', Arial, sans-serif;
-      color: #111111;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: flex-end;
-      gap: 32px;
-      justify-self: start;
-    }
-
-    .nav-name {
-      font-family: 'NeutraTextDemi', Arial, sans-serif;
-      font-size: 24px;
-      color: #111111;
-      text-decoration: none;
-      white-space: nowrap;
-      justify-self: center;
-    }
-
-    .nav-link {
-      font-size: 16px;
-      color: #111111;
-      text-decoration: none;
-    }
-
-    .nav-link:hover {
-      opacity: 0.5;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: flex-end;
-      gap: 16px;
-      justify-self: end;
-    }
-
-    .nav-icon {
-      display: flex;
-      align-items: flex-end;
-      opacity: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-icon:hover {
-      opacity: 0.5;
-    }
-
-    .nav-icon img {
-      width: 18px;
-      height: 18px;
-      display: block;
-    }
-    /* ── END NAV ── */
+    body { padding-top: 64px; }  /* ← top gap below nav */
 
     .bio-content {
-      max-width: 720px;
+      max-width: 800px;
       margin: 0 auto;
       padding-top: 48px;
     }
@@ -118,7 +29,10 @@
     </div>
   </nav>
   <main class="bio-content">
-    <!-- Bio content goes here -->
+    <h2 style="font-family:'NeutraTextDemi',Arial,sans-serif;font-size:20px;text-align:left;padding-top:16px;padding-bottom:16px;">About</h2>
+    <p style="font-family:'NeutraTextLight',Arial,sans-serif;font-size:18px;line-height:1.6;">Ziyu (Isabelle) Wang is a Chinese computational artist based in London, currently completing an MFA in Computational Arts at Goldsmiths, University of London. Working across interactive installations, machine vision, wearable devices, and creative coding, she seeks to stretch the boundaries of human perception and open new channels of multi-sensory experience.<br><br>Central to her work is a deep curiosity about the nature of reality: how humans construct and inhabit it, and how machines perceive it differently. This tension between organic and computational sensing runs through everything she makes.<br><br>Isabelle believes that no mediation, however precise, however poetic, can substitute for the rawness of being present. Her work asks only that something real passes between people.</p>
+    <h2 style="font-family:'NeutraTextDemi',Arial,sans-serif;font-size:20px;text-align:left;padding-top:36px;padding-bottom:16px;">Selected Experience</h2>
+    <p style="font-family:'NeutraTextLight',Arial,sans-serif;font-size:18px;line-height:1.6;">Nike Greater China, Consumer Direct Marketing Creative Intern, 2022–2023<br>Oxo Gallery London, Exhibition Manager, 2025<br>LIMAGE Shanghai, Design and Performance Team, 2024<br>J Design Lab Shanghai, Designer Assistant, 2022</p>
   </main>
 </body>
 </html>
