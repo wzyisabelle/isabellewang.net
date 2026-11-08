@@ -1,0 +1,389 @@
+/* ===========================================================================
+   isabellewang.net — v2 work (project) pages
+   Composable content modules + fixed footer. Loaded alongside styles.css, which
+   provides the app-shell (non-scrolling page, header, the single <main> scroll
+   region). Stack .module-* blocks inside <main class="work"> in any order; they
+   render top-to-bottom in document order.
+   All tunable numbers are :root variables below (names don't clash with
+   styles.css). Variables from styles.css (--content-margin,
+   --header-pad-y, --fs-nav, --fw-nav, --fw-light, --color-invert-fg) are reused.
+   =========================================================================== */
+
+:root {
+  /* vertical rhythm */
+  --module-gap: var(--grid-gap-y); /* vertical gap between stacked modules (unified to grid rhythm) */
+  --work-pad-top: 0px;          /*滚动区域顶部的留白 gap below the header, before the first module */
+  --work-pad-bottom: 90px;       /* gap above the footer, after the last module */
+  --work-section-gap: 72px;           /* gap above a section sub-heading (WIP2 / BEHIND THE SCENE / …) */
+
+  /* split module (left text / right media) */
+  --split-left-width: 20%;       /*左栏宽 left text column width */
+  --split-col-gap: var(--content-margin);  /* gap between the two columns = unit distance */
+  --split-text-gap: 24px;        /* gap between stacked text blocks in the left column */
+  --fs-split-text: 22px;         /* 字号 left column text size (Rubik Regular) */
+  --fw-split-text: var(--fw-regular);
+  --lh-split-text: 1.2; /* 行距 */
+
+  /* media (unified to the grid rhythm) */
+  --media-gap: var(--grid-gap-y);     /* vertical gap between stacked media */
+  --img-pair-gap: var(--grid-gap-x);  /* horizontal gap inside a 2-up image row */
+
+  /* grid / equal-height-row modules */
+  --grid-gap-x: 16px;            /* horizontal gap: within a row and between grid columns */
+  --grid-gap-y: 16px;            /* vertical gap: between grid rows (keep = x by default) */
+
+  /* in-media sub-heading (e.g. "BEHIND THE SCENE") */
+  --fs-work-heading: 18px;
+  --fw-work-heading: var(--fw-medium);
+  --work-heading-top: 16px;
+  --work-heading-bottom: 16px;
+
+  /* caption */
+  --fs-work-caption: 15px;
+  --caption-gap-top: 8px;          /* image bottom -> its caption */
+  --caption-gap-bottom: 16px;      /* caption -> next image top */
+
+  /* footer */
+  --footer-bg: #000000;
+  --footer-pad-y: 12px;     /* footer vertical padding */
+  --footer-anim: 0.3s;      /* slide in/out duration */
+
+  /* bio page */
+  --bio-icon-size: 26px;    /* icon height (Instagram / Email / LinkedIn) */
+  --bio-icon-gap: 42px;     /* gap between the icons */
+  --bio-item-gap: 8px;      /* gap between Selected Experience entries */
+}
+
+/* ---- scroll area: stack modules top-to-bottom ---- */
+main.work {
+  padding-top: var(--work-pad-top);
+  padding-bottom: var(--work-pad-bottom);  /* keep last content off the footer */
+}
+main.work > * + * {
+  margin-top: var(--module-gap);           /* uniform gap between modules */
+}
+
+/* ---- module: split (left text, right media) ---- */
+.module-split {
+  display: grid;
+  grid-template-columns: var(--split-left-width) 1fr;
+  column-gap: var(--split-col-gap);
+  margin: 0 var(--content-margin);         /* left & right margin = unit distance */
+  align-items: start;                      /* both columns top-aligned */
+}
+.split-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--split-text-gap);
+  font-weight: var(--fw-split-text);
+  font-size: var(--fs-split-text);
+  line-height: var(--lh-split-text);
+}
+.split-text > * { margin: 0; }
+.split-text .project-meta {
+  font-size: var(--fs-work-caption);
+  font-weight: var(--fw-light);
+  font-style: italic;
+}
+.split-media {
+  display: flex;
+  flex-direction: column;
+  gap: var(--media-gap);
+}
+.split-media > * { margin: 0; }
+
+/* ---- module: full (full width between the margins) ---- */
+.module-full {
+  margin: 0 var(--content-margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--media-gap);
+}
+.module-full > * { margin: 0; }
+
+/* ---- module: equal-height row (media side by side; heights equalise) ----
+   Each child carries --ar (= its intrinsic width / height). Widths distribute
+   in proportion to --ar from a zero flex-basis, so every child ends up the SAME
+   height and the row exactly fills the space between the margins. Horizontal gap
+   is --grid-gap-x. Reusable: drop any number of <img>/<video> directly inside,
+   each with style="--ar: W/H". */
+.module-row {
+  display: flex;
+  gap: var(--grid-gap-x);
+  margin: 0 var(--content-margin);
+}
+.module-row > * {
+  flex: var(--ar, 1) 1 0;
+  min-width: 0;
+}
+
+/* equal-height row for NESTING inside a grid cell (no page margin). Children carry
+   --ar and distribute width from a 0 basis, so they (and their images) come out the
+   same height with a --grid-gap-x gutter. e.g. two figures inside a .span-2 cell. */
+.equal-row {
+  display: flex;
+  gap: var(--grid-gap-x);
+  align-items: flex-start;
+}
+.equal-row > * {
+  flex: var(--ar, 1) 1 0;
+  min-width: 0;
+}
+
+/* ---- module: three-column grid (items span 1 or 2 columns) ----
+   Column gap = --grid-gap-x, row gap = --grid-gap-y, total width = space between
+   the margins. Use .span-2 to occupy two columns and .start-2 to begin at column
+   2. Pin a row with an inline grid-row where the layout needs empty cells. */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--grid-gap-x);
+  row-gap: var(--grid-gap-y);
+  margin: 0 var(--content-margin);
+  align-items: start;                     /* top-align items of unequal height */
+}
+.span-2  { grid-column-end: span 2; }    /* occupy two columns */
+.start-2 { grid-column-start: 2; }        /* begin at column 2 */
+
+/* two equal columns (1:1); same gap & margins as the three-column grid */
+.module-grid.cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* wider column gap (one --content-margin, matching .module-split) — combine with
+   .cols-2 for an even left-text / right-image split. */
+.module-grid.gap-wide {
+  column-gap: var(--content-margin);
+}
+
+/* text row: a wide left column for body text; the right column is exactly one
+   third-grid column wide and gapped by one --content-margin, so it lines up with
+   column 3 of the .module-grid below. */
+.module-textrow {
+  display: grid;
+  grid-template-columns: 1fr calc((100% - 2 * var(--grid-gap-x)) / 3);
+  column-gap: var(--content-margin);
+  margin: 0 var(--content-margin);
+  align-items: start;
+}
+
+/* media sizing — applies to BOTH img and video across the work modules */
+.module-row > img,
+.module-row > video,
+.module-grid img,
+.module-grid video,
+.module-full img,
+.module-full video,
+.img-pair img,
+.img-pair video,
+.split-media img,
+.split-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- top hero: edge to edge (put on the first .module-full section) ----
+   Both drop the side margins so the hero spans the whole scroll area (up to the
+   scrollbar, if one is shown).
+   .hero-bleed  full width, natural height, nothing cropped.
+   .hero-fill   exactly one screen: full width x the visible area below the
+                header; the img/video covers it and the overflow is cropped
+                evenly around --hero-pos (default center). Same approach as the
+                landing slides (landing.css). Per page:
+                <section class="module-full hero-fill" style="--hero-pos: center top;"> */
+.hero-bleed,
+.hero-fill {
+  margin-left: 0;
+  margin-right: 0;
+}
+.hero-fill {
+  height: calc(100vh - var(--header-height));   /* fallback for browsers without dvh */
+  height: calc(100dvh - var(--header-height));
+}
+.hero-fill > img,
+.hero-fill > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-pos, center);
+}
+
+/* ---- pieces reusable inside any module ---- */
+.img-pair {                      /* two images side by side */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--img-pair-gap);
+}
+
+.work-heading {                  /* sub-heading inside media (e.g. BEHIND THE SCENE) */
+  font-family: var(--font-sans);
+  font-weight: var(--fw-work-heading);
+  font-size: var(--fs-work-heading);
+  text-align: left;
+    margin: 0;
+  padding-top: var(--work-heading-top);
+  padding-bottom: var(--work-heading-bottom);
+}
+
+.work-caption {                  /* image caption */
+  font-family: var(--font-sans);
+  font-weight: var(--fw-light);
+  font-style: italic;            /* uses the Rubik LightItalic @font-face */
+  font-size: var(--fs-work-caption);
+  text-align: left;
+}
+
+/* reusable section sub-heading (WIP2, WIP1, …): same text style as .work-heading,
+   left-aligned at the content margin, with default margins/padding cleared. Use as
+   <h2 class="work-heading section-head">. */
+.section-head {
+  margin: 0 var(--content-margin);
+  padding: 0;
+}
+main.work > .section-head {
+  margin-top: var(--work-section-gap);   /* big gap above a sub-heading */
+}
+
+/* top-gap modifier: place a module one --content-margin below the previous one */
+main.work > .gap-content {
+  margin-top: var(--content-margin);
+}
+
+/* ---- BEHIND-style figure list: left-aligned images (col 1-2), each with a caption.
+   Reuses .module-grid + .span-2 so the images line up exactly with the grid above;
+   the vertical rhythm is controlled here, not by the grid's default row-gap. */
+.module-behind {
+  row-gap: var(--caption-gap-bottom);   /* caption -> next image (and title -> first image) */
+}
+main.work > .module-behind {
+  margin-top: var(--work-section-gap);    /* grid above -> title (shared section gap) */
+}
+.module-behind .work-heading {
+  padding-top: 0;                        /* keep img8 -> title exactly --content-margin (no stacking) */
+  padding-bottom: 0;                     /* title -> first image is governed by row-gap */
+}
+.behind-figure {
+  margin: 0;                             /* reset the UA <figure> margin (1em 40px) */
+  display: flex;
+  flex-direction: column;
+  gap: var(--caption-gap-top);           /* image -> its caption */
+}
+
+/* ---- video (16:9) ---- */
+.video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+/* opt-in: black instead of white while the embedded player loads (the iframe
+   paints white until Vimeo/YouTube renders). <div class="video-wrap video-wrap-dark"> */
+.video-wrap-dark,
+.video-wrap-dark iframe {
+  background: #000;
+}
+
+/* ---- footer (work pages only): full-width black bar, Prev left / Next right ----
+   Typography via --fs-nav / --fw-nav (same look as the header nav).
+   It floats over the scroll region (position: fixed), hidden below the window by
+   default and slid up by footer.js (toggling .is-visible) when scrolling down. */
+.site-footer {
+  position: fixed;               /* float over content, not in the flex flow */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;                   /* above the scrolling content */
+  transform: translateY(100%);   /* hidden below the window by default */
+  transition: transform var(--footer-anim);
+  background: var(--footer-bg);
+  color: var(--color-invert-fg); /* white */
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--footer-pad-y) var(--content-margin);
+  overflow: hidden;              /* scroll container (clips children only; the transform slide is unaffected) */
+  scrollbar-gutter: stable;      /* reserve the same right-hand gap as main's scrollbar, so Next aligns with Contact */
+}
+.site-footer.is-visible {
+  transform: translateY(0);      /* slid up into view */
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-footer { transition: none; }   /* no slide: show/hide instantly */
+}
+.site-footer a {
+  font-weight: var(--fw-nav);    /* nav weight (decoupled from the index list) */
+  font-size: var(--fs-nav);      /* nav size (reused from styles.css) */
+  line-height: 1;
+  color: var(--color-invert-fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-footer a:hover {
+  opacity: 0.5;
+}
+
+/* ---- foodies_home only (body.page-foodies): white-background posters shown at
+   half their native pixels via a 2x srcset, centred in each half-column. They
+   shrink to the column width if narrower, and never exceed the screen height
+   below the header. Scoped so neither the base .module-grid nor other pages
+   change. ---- */
+.page-foodies { --poster-vgap: 48px; }   /* breathing room above + below a poster */
+.page-foodies .module-grid img {
+  width: auto;                    /* use the 2x-srcset intrinsic size (half), not 100% */
+  height: auto;
+  max-width: 100%;                /* shrink to the half-column when it is narrower */
+  max-height: calc(100vh - var(--header-height) - var(--poster-vgap));   /* fallback */
+  max-height: calc(100dvh - var(--header-height) - var(--poster-vgap));
+  justify-self: center;           /* centre horizontally in the half-column */
+}
+
+/* ---- bio page (bio.html): text in columns 1-2, icons in column 3 ----
+   Reuses .module-grid, .split-text/.project-desc, .work-heading and .work-caption. */
+main.work > .bio-grid {
+  margin-top: var(--grid-gap-y);          /* header -> first line of text */
+}
+.bio-heading {                             /* "Selected Experience": same look as BEHIND THE SCENE */
+  margin: var(--work-section-gap) 0 0;     /* last paragraph -> heading */
+  padding: 0;
+}
+.bio-list {                                /* experience entries, caption style */
+  list-style: none;
+  margin: var(--caption-gap-bottom) 0 0;   /* heading -> first entry (as BEHIND THE SCENE) */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bio-item-gap);
+}
+.bio-list li {
+  margin: 0;
+  font-size: var(--fs-work-heading);       /* bio only: same size as the BEHIND THE SCENE heading */
+}
+.bio-icons {                               /* column 3, right-aligned, stays put while the text scrolls */
+  position: sticky;
+  top: var(--grid-gap-y);                  /* from the top of the scroll area: same spot as before scrolling */
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--bio-icon-gap);
+}
+.bio-icons a {
+  display: block;
+  line-height: 0;
+}
+.bio-icons a:hover {
+  opacity: 0.5;                            /* same hover as the footer links */
+}
+.bio-icons img {
+  display: block;
+  height: var(--bio-icon-size);
+  width: auto;
+}
+/* bio 页 LinkedIn 图标单独缩小（它的 SVG 没有留白，看起来比另外两个大） */
+img[src*="linkedin"] {
+  height: 23px;
+  width: auto;
+}

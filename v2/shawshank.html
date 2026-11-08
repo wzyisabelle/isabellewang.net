@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Shawshank in Keywords | Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <span class="page-title">Shawshank in Keywords</span>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- 1. preview.png — one full screen, cropped to fit (.hero-fill) -->
+    <section class="module-full hero-fill">
+      <img src="../assets/images/projects/Shawshank_in_Keywords/preview.png" alt="">
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <p class="project-desc">When machines "see," what exactly do they perceive?<br><br>This project explores how machines interpret emotionally and narratively rich visual content. Using the CLIP model, 34,206 frames extracted from The Shawshank Redemption were analyzed and matched with keywords from a neutral dictionary of 5,000 words. The result is a reconstructed version of the film—seen through the cold, impartial gaze of a machine—where meaning emerges not through plot, but through patterns of recognition, abstraction, and misinterpretation.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2025. HD Video. Duration: 2:46. CLIP (OpenAI), Python.</p>
+      </div>
+    </section>
+
+    <!-- 3. YouTube video — cols 1-2 (16:9), col 3 empty, gap above = one unit distance -->
+    <section class="module-grid gap-content">
+      <div class="video-wrap span-2">
+        <iframe src="https://www.youtube.com/embed/ArozEqVbQyo" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- 4. 1.png — full content width -->
+    <section class="module-full">
+      <img src="../assets/images/projects/Shawshank_in_Keywords/1.png" alt="">
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a href="through_the_stone.html">&lt; Previous</a>
+    <a href="emo_frame.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+</body>
+</html>

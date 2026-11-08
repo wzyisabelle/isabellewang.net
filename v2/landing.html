@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <!-- Slides are generated from the SLIDES list in the script below -->
+  <main class="landing" id="slides"></main>
+
+  <script>
+    /* ======================================================================
+       首页轮播配置 SLIDES — 只需修改这里
+       ----------------------------------------------------------------------
+       每一项 = 一屏，按从上到下的顺序排列：
+         file : 文件名，放在 assets/images/landing/ 里（大小写必须与实际文件一致）
+         type : "image" 图片 或 "video" 视频（视频自动静音循环、无控制条）
+         link : 点击这一屏跳转的页面（相对 v2/ 文件夹）
+         pos  : 可选，裁切重点，即 CSS object-position。不写 = "center" 居中
+                例如 "left center"、"right top"、"50% 30%"
+         path : 可选，引用 landing 文件夹以外的文件时使用，写完整路径（相对 v2/ 文件夹，
+                以 ../assets/ 开头），例如作品页已有的视频：
+                  path: "../assets/images/projects/iwd/iwd2-web.mp4"
+                写了 path 就不需要 file；不写 path 时照常用 file（默认在 landing 文件夹）
+       更换文件或链接：改对应项的 file（或 path）/ link
+       调整顺序：上下移动整行（第一行 = 打开首页时显示的第一屏）
+       增加一屏：复制一行并修改；删除一屏：删掉那一行
+       无限循环会根据这个列表自动生成，增删、调整顺序都不需要改下面的代码
+       ====================================================================== */
+    var SLIDES = [
+      { path: "../assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html" },
+      { path: "../assets/images/projects/Melodic_Echo_Odyssey/preview.png", type: "image", link: "melodic_echo_odyssey.html" },
+      { file: "vernal_soiree.mp4",                                           type: "video", link: "vernal_soiree.html" },
+      { path: "../assets/images/projects/iwd/iwd2-web.mp4",                 type: "video", link: "nike_iwd.html" },
+      { path: "../assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html" }
+    ];
+
+    // 素材文件夹 media folder (relative to v2/)
+    var MEDIA_DIR = "../assets/images/landing/";
+
+    /* ---- endless loop ------------------------------------------------------
+       DOM order: [copy of last] + the real slides + [copy of first]. The copies
+       never get media of their own: each item's single <img>/<video> is MOVED
+       into whichever of its slides (real or copy) is nearest the scroll
+       position, so nothing downloads twice, a video keeps playing across the
+       jump, and only the clicked slide carries the element that gets a
+       view-transition-name. When scrolling settles on a copy, scrollTop is set
+       (instantly) to the matching real slide, which looks identical. */
+    (function () {
+      "use strict";
+
+      var main = document.getElementById("slides");
+      var N = SLIDES.length;
+      if (!N) return;
+      var videos = [];
+      var items = [];            // per SLIDES entry: { content, slides: [real, copies...] }
+      var all = [];              // every slide element in DOM order
+
+      function makeSlide(item, isCopy) {
+        var slide = document.createElement("a");
+        slide.className = "slide";
+        slide.href = item.link;
+        slide.setAttribute("aria-label", item.link.replace(/\.html$/, "").replace(/_/g, " "));
+        if (item.pos) slide.style.setProperty("--pos", item.pos);
+        if (isCopy) {            // copies are for the eye only: hidden from keyboard and screen readers
+          slide.setAttribute("aria-hidden", "true");
+          slide.tabIndex = -1;
+          slide.dataset.copy = "";
+        }
+        return slide;
+      }
+
+      SLIDES.forEach(function (item, i) {
+        var slide = makeSlide(item, false);
+        var media;
+        if (item.type === "video") {
+          media = document.createElement("video");
+          media.muted = true;              // property too, so autoplay rules allow play()
+          media.setAttribute("muted", "");
+          media.loop = true;
+          media.playsInline = true;
+          media.setAttribute("playsinline", "");
+          media.preload = "metadata";      // only the header is fetched until the slide is shown
+          videos.push(media);
+        } else {
+          media = document.createElement("img");
+          media.alt = "";
+          // the first and last slides sit next to the start screen (the last via
+          // its copy above), so load them normally; the rest lazily
+          if (i > 0 && i < N - 1) media.loading = "lazy";
+        }
+        // path (full, relative to v2/) wins; otherwise file inside MEDIA_DIR
+        var src = item.path || (MEDIA_DIR + item.file);
+        var entry = { content: media, slides: [slide] };
+        // Missing or failed file: show the expected path instead of the media.
+        media.addEventListener("error", function () {
+          var note = document.createElement("span");
+          note.className = "slide-missing";
+          note.textContent = src.replace(/^\.\.\//, "");   // e.g. assets/images/landing/vernal_soiree.mp4
+          media.replaceWith(note);
+          entry.content = note;
+        });
+        media.src = src;
+        slide.appendChild(media);
+        items.push(entry);
+      });
+
+      // copies: last item above the first slide, first item below the last
+      var top = makeSlide(SLIDES[N - 1], true), bottom = makeSlide(SLIDES[0], true);
+      items[N - 1].slides.push(top);
+      items[0].slides.push(bottom);
+      all = [top].concat(items.map(function (e) { return e.slides[0]; }), [bottom]);
+      all.forEach(function (s) { main.appendChild(s); });
+
+      function slideH() { return all[1].offsetHeight || main.clientHeight || 1; }
+      function indexOf(slide) { return all.indexOf(slide); }
+
+      // Put each item's media into its slide nearest the current scroll position.
+      function place() {
+        var at = main.scrollTop / slideH();
+        items.forEach(function (e) {
+          var best = e.slides[0], d = Infinity;
+          e.slides.forEach(function (s) {
+            var dist = Math.abs(indexOf(s) - at);
+            if (dist < d - 0.01) { d = dist; best = s; }   // ties keep the real slide
+          });
+          if (e.content.parentNode !== best) best.appendChild(e.content);
+        });
+      }
+
+      // Settled on a copy -> jump (no animation) to the real slide it mirrors.
+      function settle() {
+        var i = Math.round(main.scrollTop / slideH());
+        var to = i === 0 ? N : (i === N + 1 ? 1 : -1);
+        if (to < 0) return;
+        main.scrollTop = all[to].offsetTop;
+        place();                                   // same task: no frame shows the in-between state
+      }
+
+      var timer = 0;
+      main.addEventListener("scroll", function () {
+        place();
+        if (!("onscrollend" in window)) {          // no scrollend (Safari 18): wait for scrolling to stop
+          clearTimeout(timer);
+          timer = setTimeout(settle, 150);
+        }
+      }, { passive: true });
+      main.addEventListener("scrollend", settle);
+      window.addEventListener("resize", place);
+      // restored from the back/forward cache while resting on a copy: move to the real slide
+      window.addEventListener("pageshow", function (e) { if (e.persisted) settle(); });
+
+      // Back from a work page: return to the slide that was clicked (saved in
+      // this history entry); otherwise start on the first slide.
+      var start = 1;
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      var back = (window.navigation && navigation.activation)
+        ? navigation.activation.navigationType === "traverse"
+        : (nav && nav.type === "back_forward");
+      var saved = history.state && history.state.landingSlide;
+      if (back && saved >= 1 && saved <= N) start = saved;
+      main.scrollTop = all[start].offsetTop;
+      place();
+
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest("a.slide");
+        if (!a) return;
+        var i = indexOf(a);
+        var real = i === 0 ? N : (i === N + 1 ? 1 : i);       // a copy maps to its real slide
+        try { history.replaceState(Object.assign({}, history.state, { landingSlide: real }), ""); } catch (err) {}
+      }, true);
+
+      // Play a video only while its slide is on screen; pause it when it leaves.
+      // (The observer follows the element, so it also works while it sits in a copy.)
+      if (videos.length && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) {
+              var p = v.play();
+              if (p && p.catch) p.catch(function () {}); // missing file / autoplay refused: stay quiet
+            } else {
+              v.pause();
+            }
+          });
+        }, { root: main, threshold: 0.5 });
+        videos.forEach(function (v) { io.observe(v); });
+      }
+    })();
+  </script>
+  <!-- seamless slide -> work page transition (experiment; HERO_PAGES = Nike only) -->
+  <script src="landing-transition.js"></script>
+  <!-- slide click -> work page auto-scrolls to its text (experiment) -->
+  <script src="landing-entry.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Melodic Echo Odyssey | Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <span class="page-title">Melodic Echo Odyssey</span>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- 1. preview.png — one full screen, cropped to fit (.hero-fill) -->
+    <section class="module-full hero-fill">
+      <img src="../assets/images/projects/Melodic_Echo_Odyssey/preview.png" alt="">
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <p class="project-desc">An experimental narrative concert that merges AI-generated music, robotic arm choreography, computer vision, and Chinese Pingtan to reinterpret cultural memory. Inspired by the storytelling tradition of Pingtan, the performance weaves traditional influences with new media into an immersive journey through history and sound.</p>
+        <p class="project-desc">In collaboration with artists, engineers, performers and technologists, my role was to choreograph the robotic arm and operate it live during the performance.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2024. Premiere at Cadillac Shanghai Concert Hall.</p>
+      </div>
+    </section>
+
+    <!-- 3. 6.jpg + 3.jpg — two equal columns (1:1), gap above = one unit distance -->
+    <section class="module-grid cols-2 gap-content">
+      <img src="../assets/images/projects/Melodic_Echo_Odyssey/6.jpg" alt="">
+      <img src="../assets/images/projects/Melodic_Echo_Odyssey/3.jpg" alt="">
+    </section>
+
+    <!-- 4. Vimeo, full content width (16:9) -->
+    <section class="module-full">
+      <div class="video-wrap">
+        <iframe src="https://player.vimeo.com/video/1239677796" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- 5. 2.jpg + 5.jpg — two equal columns (1:1) -->
+    <section class="module-grid cols-2">
+      <img src="../assets/images/projects/Melodic_Echo_Odyssey/2.jpg" alt="">
+      <img src="../assets/images/projects/Melodic_Echo_Odyssey/5.jpg" alt="">
+    </section>
+
+    <!-- 6. 1.jpg — full content width, with caption below -->
+    <section class="module-full">
+      <figure class="behind-figure">
+        <img src="../assets/images/projects/Melodic_Echo_Odyssey/1.jpg" alt="">
+        <figcaption class="work-caption">Performance stills, courtesy of LIMAGE Studio and Cadillac Shanghai Concert Hall.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 7. BEHIND THE SCENE: bts1 (col 1) + bts2 (cols 2-3), 1:2 -->
+    <section class="module-grid module-behind">
+      <h2 class="work-heading span-2">BEHIND THE SCENE</h2>
+      <figure class="behind-figure" style="grid-row: 2; grid-column: 1;">
+        <img src="../assets/images/projects/Melodic_Echo_Odyssey/bts1.jpg" alt="">
+        <figcaption class="work-caption">Programming the robotic arm's dance trajectory in Grasshopper.</figcaption>
+      </figure>
+      <figure class="behind-figure span-2 start-2" style="grid-row: 2;">
+        <img src="../assets/images/projects/Melodic_Echo_Odyssey/bts2.jpg" alt="">
+        <figcaption class="work-caption">Live execution on site.</figcaption>
+      </figure>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a href="emo_frame.html">&lt; Previous</a>
+    <a href="vernal_soiree.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+  <script src="landing-entry.js"></script>
+</body>
+</html>

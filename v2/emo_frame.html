@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Emo Frame | Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <span class="page-title">Emo Frame</span>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- 1. preview hero — full window width, natural height (.hero-bleed), autoplay muted loop, no controls -->
+    <section class="module-full hero-bleed">
+      <video src="../assets/images/projects/Emo_Frame/preview-web.mp4" autoplay muted loop playsinline></video>
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <p class="project-desc">Who or what gets to define the subtleties of how we feel?<br><br>Emo Frame is a wearable device that materializes the digital gaze of machine vision. A transparent acrylic frame, cut in the shape of the bounding boxes used by facial recognition systems, sits in front of the wearer's face. When activated, a webcam feeds into a DeepFace model that classifies the wearer's expression in real time; an Arduino-driven LCD screen mounted on the frame displays the identified "emotion" and its confidence score for others to read.<br><br>Between two people, a machine's reading now stands as a third presence, at once a bridge and a distortion.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2025. Wearable device. Arduino, DeepFace (Python), OpenCV, acrylic frame, 3D-printed components, LCD display, webcam.</p>
+      </div>
+    </section>
+
+    <!-- 3. 1.png (col 1) + Vimeo (cols 2-3, 16:9), gap above = one unit distance -->
+    <section class="module-grid gap-content">
+      <img src="../assets/images/projects/Emo_Frame/1.png" alt="">
+      <div class="video-wrap span-2 start-2">
+        <iframe src="https://player.vimeo.com/video/1239633846" allowfullscreen></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a href="shawshank.html">&lt; Previous</a>
+    <a href="melodic_echo_odyssey.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+</body>
+</html>

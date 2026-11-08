@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Bio | Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- three-column grid: text in columns 1-2, icons in column 3 -->
+    <section class="module-grid bio-grid">
+
+      <div class="span-2">
+        <div class="split-text">
+          <p class="project-desc">Isabelle Wang is a creative technologist and computational artist based in London and Shanghai. She recently graduated with an MFA in Computational Arts from Goldsmiths, University of London.</p>
+          <p class="project-desc">Working across interactive installations, machine vision, creative coding, and immersive environments, she explores how technology can be used creatively to design engaging and meaningful experiences for audiences.</p>
+          <p class="project-desc">With a background in visual communication and experience in the creative industry, she brings a strong visual sensibility and an understanding of brand storytelling and commercial creative strategies.</p>
+          <p class="project-desc">She remains curious about how emerging technologies can reshape the way people perceive the physical world. She believes technology is most meaningful when it creates something beyond itself: a moment of genuine human experience and connection.</p>
+        </div>
+
+        <h2 class="work-heading bio-heading">Selected Experience</h2>
+        <ul class="bio-list">
+          <li class="work-caption">Nike Greater China, Consumer Direct Marketing Creative Intern, 2022–2023</li>
+          <li class="work-caption">Oxo Gallery London, Exhibition Manager, 2025 &amp; 2026</li>
+          <li class="work-caption">LIMAGE Shanghai, Design and Performance Team, 2024</li>
+          <li class="work-caption">J Design Lab Shanghai, Designer Assistant, 2022</li>
+        </ul>
+      </div>
+
+      <!-- icons: column 3, right-aligned, stay in place while the text scrolls -->
+      <nav class="bio-icons" aria-label="Contact">
+        <a href="https://www.instagram.com/ziyuw.ork/" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="../assets/icons/instagram-svgrepo-com.svg" alt="Instagram" />
+        </a>
+        <a href="mailto:isabelle.wangzy@gmail.com" aria-label="Email">
+          <img src="../assets/icons/email-svgrepo-com.svg" alt="Email" />
+        </a>
+        <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="../assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" />
+        </a>
+      </nav>
+
+    </section>
+
+  </main>
+</body>
+</html>

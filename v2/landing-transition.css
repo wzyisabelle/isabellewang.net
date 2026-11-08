@@ -1,0 +1,54 @@
+/* ===========================================================================
+   isabellewang.net — v2 landing -> work page transition (experiment)
+   Linked ONLY by work pages that take part (nike_iwd.html today).
+   The ::view-transition-* pseudo-elements below are styled by the page being
+   ARRIVED AT, so this file lives on the work page. Names ("hero",
+   "site-header") are set from landing-transition.js only for a landing click.
+   =========================================================================== */
+
+:root {
+  /* 过渡时长与缓动 — adjust here */
+  --vt-duration: 0.2s;
+  --vt-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* opt this page into cross-document transitions (skipped by JS unless the
+   visitor clicked through from landing.html); off for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* shared timing for every part of the transition */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: var(--vt-duration);
+  animation-timing-function: var(--vt-ease);
+}
+
+/* page content (everything not named): old landing fades out, the work page's
+   text row and images fade in while the hero moves into place */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--vt-duration);
+}
+
+/* hero: the group morphs position/size; both snapshots fill it and are cropped
+   like object-fit: cover, cross-fading as they go */
+::view-transition-old(hero),
+::view-transition-new(hero) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* header: no movement, no fade — just show the new header from the first frame */
+::view-transition-group(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+::view-transition-old(site-header) {
+  display: none;
+}

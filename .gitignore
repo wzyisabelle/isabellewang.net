@@ -5,6 +5,12 @@
 # Working documents (drafts, notes)
 content.md
 
+# Preparation / source material (PSDs, drafts) — never committed
+preparation/
+
+# Handover notes (local only)
+HANDOVER.md
+
 # Editor / IDE files
 .vscode/
 .idea/
@@ -14,3 +20,15 @@ content.md
 # Logs and temporary files
 *.log
 *.tmp
+
+# Large source video (the web-optimized through_the_stone_2-web.mp4 is committed instead)
+assets/images/projects/through_the_stone_2/video/through_the_stone_2K.mp4
+
+# Large source video (the lossless iwd2-web.mp4 is committed instead)
+assets/images/projects/iwd/iwd2.mp4
+
+# Large source video (the lossless cny-web.mp4 is committed instead)
+assets/images/projects/cny/cny.mp4
+
+# Large source video (the lossless preview-web.mp4 is committed instead)
+assets/images/projects/Emo_Frame/preview.mp4

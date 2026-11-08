@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <title>Through the Stone | Isabelle Wang</title>
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <span class="page-title">Through the Stone</span>
+    <nav class="site-nav">
+      <a href="index.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- 1. preview.png — one full screen, cropped to fit (.hero-fill) -->
+      <section class="module-full hero-fill">
+      <img src="../assets/images/projects/through_the_stone_2/preview.png" alt="">
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <p class="project-desc">In traditional Chinese gardens, ornamental stones are often placed to guide the gaze and enrich the atmosphere. Inspired by this practice, I created these stones, each embedding a camera and a screen. The live image captured by the camera becomes part of the stone's own hollow form, reflecting the surrounding environment as well as the stones themselves.<br><br>Through this shifting view, the work invites both observation and self-reflection.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2025. Interactive installation. ESP32, camera, screen, stone clay, tea leaves, wood, lithium battery.</p>
+      </div>
+    </section>
+
+    <!-- 3. equal-height row: VIDEO (AR 2560/1440) + 6.png (AR 2400/1600). Gap above = one unit distance. -->
+    <section class="module-row gap-content">
+      <video style="--ar: 1.7778;"
+             src="../assets/images/projects/through_the_stone_2/video/through_the_stone_2-web.mp4"
+             poster="../assets/images/projects/through_the_stone_2/video/cover.jpg"
+             autoplay muted loop playsinline></video>
+      <img style="--ar: 1.5;" src="../assets/images/projects/through_the_stone_2/6.png" alt="">
+    </section>
+
+    <!-- 4. three-column grid: 5 (col 1-2) / 2,9,3 / 8 (col 2-3). Gap above = --module-gap. -->
+    <section class="module-grid">
+      <img class="span-2" style="grid-row: 1;" src="../assets/images/projects/through_the_stone_2/5.png" alt="">
+      <img style="grid-row: 2;" src="../assets/images/projects/through_the_stone_2/2.png" alt="">
+      <img style="grid-row: 2;" src="../assets/images/projects/through_the_stone_2/9.png" alt="">
+      <img style="grid-row: 2;" src="../assets/images/projects/through_the_stone_2/3.png" alt="">
+      <img class="span-2 start-2" style="grid-row: 3;" src="../assets/images/projects/through_the_stone_2/8.png" alt="">
+    </section>
+
+    <!-- 5. BEHIND THE SCENE: left-aligned figures (col 1-2), reusing the grid tracks -->
+    <section class="module-grid module-behind">
+      <h2 class="work-heading span-2">BEHIND THE SCENE</h2>
+      <figure class="behind-figure span-2">
+        <img src="../assets/images/projects/through_the_stone_2/bts1.png" alt="">
+        <figcaption class="work-caption">Circuit test: lithium battery to screen.</figcaption>
+      </figure>
+      <figure class="behind-figure span-2">
+        <img src="../assets/images/projects/through_the_stone_2/bts2.png" alt="">
+        <figcaption class="work-caption">AI-generated models and 3D printing.</figcaption>
+      </figure>
+      <figure class="behind-figure span-2">
+        <img src="../assets/images/projects/through_the_stone_2/bts3.png" alt="">
+        <figcaption class="work-caption">Final making process: Hand-crafted in clay mixed with tea leaves.</figcaption>
+      </figure>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a href="aloe.html">&lt; Previous</a>
+    <a href="shawshank.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+  <script src="landing-entry.js"></script>
+</body>
+</html>
