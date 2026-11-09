@@ -50,6 +50,10 @@
   function store(fn) {          // sessionStorage can throw (private mode, blocked storage)
     try { return fn(window.sessionStorage); } catch (e) { return null; }
   }
+  // 手机（≤ 767px）不执行入场自动滚动，作品页直接停在顶部
+  function phone() {
+    return window.matchMedia && matchMedia("(max-width: 767px)").matches;
+  }
 
   /* ---- landing: write the flag on a plain click into an ENTRY_PAGES slide */
   if (document.getElementById("slides")) {
@@ -59,7 +63,7 @@
       var target = fileOf(a.getAttribute("href"));
       // modified clicks (new tab/window) or other slides: no flag
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ||
-          ENTRY_PAGES.indexOf(target) === -1) {
+          ENTRY_PAGES.indexOf(target) === -1 || phone()) {
         store(function (s) { s.removeItem(KEY); });
         return;
       }
@@ -83,6 +87,7 @@
   var normalLoad = !nav || nav.type === "navigate";       // not reload / back_forward
   if (!fresh || !fromLanding || !normalLoad) return;
   if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (phone()) return;
 
   var main = document.querySelector("body > main");
   var target = document.querySelector(TARGET);

@@ -18,6 +18,10 @@
   }
   var OFFSET_X = readOffset("--thumb-offset-x");
 
+  // Devices without hover (phones, tablets): no thumbnail, a tap just opens the
+  // link. Read at each event, so a tablet with a mouse attached still gets it.
+  var NO_HOVER = window.matchMedia ? window.matchMedia("(hover: none)") : null;
+
   /* ---- markdown parsing -------------------------------------------------- */
 
   // Split a markdown table row into trimmed cells, dropping the outer pipes.
@@ -182,8 +186,57 @@
       thumb.style.top = y + "px";
     }
 
+    /* ---- touch feedback (devices without hover) ------------------------
+       A finger on a row shows the desktop hover bar: index.js toggles
+       .is-pressed (styled in styles.css). Done in JS rather than with :active,
+       which iOS Safari only applies with a touch listener and which behaves
+       differently across browsers. Moving the finger (scrolling) drops it. */
+    var MOVE_TOLERANCE = 10;    // px a finger may move before it counts as a scroll
+    var pressed = null, startX = 0, startY = 0, releaseTimer = 0, leaving = false;
+
+    function noHover() { return !!(NO_HOVER && NO_HOVER.matches); }
+    function press(row) {
+      clearTimeout(releaseTimer);
+      if (pressed && pressed !== row) pressed.classList.remove("is-pressed");
+      pressed = row;
+      row.classList.add("is-pressed");
+    }
+    function release() {
+      clearTimeout(releaseTimer);
+      if (pressed) pressed.classList.remove("is-pressed");
+      pressed = null;
+    }
+    // --row-press-delay (styles.css): how long the bar shows before the jump, max 150ms.
+    function pressDelay() {
+      var v = getComputedStyle(document.documentElement).getPropertyValue("--row-press-delay").trim();
+      var ms = /ms$/.test(v) ? parseFloat(v) : (/s$/.test(v) ? parseFloat(v) * 1000 : parseFloat(v));
+      return isNaN(ms) ? 0 : Math.max(0, Math.min(ms, 150));
+    }
+
+    document.addEventListener("touchmove", function (e) {
+      if (!pressed || !e.touches.length) return;
+      var t = e.touches[0];
+      if (Math.abs(t.clientX - startX) > MOVE_TOLERANCE || Math.abs(t.clientY - startY) > MOVE_TOLERANCE) release();
+    }, { passive: true });
+    document.addEventListener("touchcancel", release, { passive: true });
+    // No click after lifting the finger (e.g. a long press): drop the bar.
+    document.addEventListener("touchend", function () {
+      if (pressed && !leaving) releaseTimer = setTimeout(release, 600);
+    }, { passive: true });
+    var scroller = document.getElementById("content");
+    if (scroller) scroller.addEventListener("scroll", function () { if (!leaving) release(); }, { passive: true });
+    // Back from a work page (back/forward cache): no leftover bar.
+    window.addEventListener("pageshow", function () { leaving = false; release(); });
+
     var rows = document.querySelectorAll(".row-item");
     rows.forEach(function (row) {
+      row.addEventListener("touchstart", function (e) {
+        if (!noHover() || !e.touches.length) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        press(row);
+      }, { passive: true });
+
       var link = row.getAttribute("data-link");
       var thumbName = row.getAttribute("data-thumb");
 
@@ -191,7 +244,7 @@
         activeRow = row;
         lastX = e.clientX;
         lastY = e.clientY;
-        if (!thumbName) { hideThumb(); return; }
+        if (!thumbName || (NO_HOVER && NO_HOVER.matches)) { hideThumb(); return; }
         // Load the thumbnail; reveal only once it has loaded, hide on error.
         // Treat the file as a 2x export via a single "2x" srcset candidate (and no
         // competing `src`), so it always lays out at half its pixel size on any
@@ -222,7 +275,12 @@
 
       if (link) {
         row.addEventListener("click", function () {
-          window.location.href = link;
+          if (!noHover()) { window.location.href = link; return; }
+          // touch: show the bar for --row-press-delay, then open the page
+          if (leaving) return;
+          leaving = true;
+          press(row);
+          setTimeout(function () { window.location.href = link; }, pressDelay());
         });
       }
     });

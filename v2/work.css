@@ -51,7 +51,7 @@
   /* bio page */
   --bio-icon-size: 26px;    /* icon height (Instagram / Email / LinkedIn) */
   --bio-icon-gap: 42px;     /* gap between the icons */
-  --bio-item-gap: 8px;      /* gap between Selected Experience entries */
+  --bio-item-gap: 6px;      /* gap between Selected Experience entries */
 }
 
 /* ---- scroll area: stack modules top-to-bottom ---- */
@@ -323,8 +323,10 @@ main.work > .module-behind {
   text-decoration: none;
   white-space: nowrap;
 }
-.site-footer a:hover {
-  opacity: 0.5;
+@media (hover: hover) {           /* hover only where the device can hover (see styles.css) */
+  .site-footer a:hover {
+    opacity: 0.5;
+  }
 }
 
 /* ---- foodies_home only (body.page-foodies): white-background posters shown at
@@ -374,8 +376,10 @@ main.work > .bio-grid {
   display: block;
   line-height: 0;
 }
-.bio-icons a:hover {
-  opacity: 0.5;                            /* same hover as the footer links */
+@media (hover: hover) {
+  .bio-icons a:hover {
+    opacity: 0.5;                          /* same hover as the footer links */
+  }
 }
 .bio-icons img {
   display: block;
@@ -386,4 +390,248 @@ main.work > .bio-grid {
 img[src*="linkedin"] {
   height: 23px;
   width: auto;
+}
+
+/* ---- 平板 + 手机（≤ 1023px）：顶部 .hero-bleed 视频完全铺满，不露白边 ----
+   emo_frame 的视频带有一个极小的非方形像素比例（SAR 69121:69120），Safari 按它算出的
+   画面比例和视频元素的框差一点点；默认 object-fit: contain 会在两侧留出不到 1px 的空隙，
+   露出白色背景，看起来像一条细白线。改为 cover 让画面填满框（裁掉的不到 0.1px，看不出），
+   容器 overflow: hidden 防止任何溢出。比例正常的视频（nike_cny）效果不变。 */
+@media (max-width: 1023px) {
+  :root {
+    --hero-video-zoom: 1.005;   /* 如仍有白线，可改为 1.005（每边放大约 1px，画面几乎无裁切） */
+  }
+  .hero-bleed {
+    overflow: hidden;
+  }
+  .hero-bleed > video {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    transform: scale(var(--hero-video-zoom));
+  }
+}
+
+/* ---- 平板 + 手机（≤ 1023px）：页脚 Previous / Next 的点击范围 ----
+   和页眉导航一样用 padding 扩大、再用负 margin 抵消，文字位置、大小和页脚高度不变。
+   上下扩出的距离 = 页脚上下内边距，所以点击区域刚好填满页脚的高度，不会超出页脚、盖住上面的内容。 */
+@media (max-width: 1023px) {
+  :root {
+    --footer-tap-y: var(--footer-pad-y);  /* 上下各扩出（= 页脚内边距，点击区域 = 整个页脚高度） */
+    --footer-tap-x: 12px;                 /* 左右各扩出（手机左右边距 12px，刚好到屏幕边缘） */
+  }
+  .site-footer a {
+    padding: var(--footer-tap-y) var(--footer-tap-x);
+    margin: calc(-1 * var(--footer-tap-y)) calc(-1 * var(--footer-tap-x));
+  }
+}
+
+/* 作品名（正文第一段前的 <h1 class="mobile-work-title">）：平板和电脑端隐藏，
+   只在下面的手机部分显示 */
+.mobile-work-title { display: none; }
+
+/* ===========================================================================
+   手机适配（≤ 767px）— 作品页的数值和单栏排版都集中在这里，电脑端不受影响。
+   左右边距 --content-margin 在 styles.css 末尾的手机设置里。
+   平板（768–1023px）保持现有多栏排版，不需要单独设置。
+   bio 页的手机排版在本段最后。
+   =========================================================================== */
+@media (max-width: 767px) {
+  :root {
+    /* 字号（电脑端：正文 22 / 标题 18 / 图注 15） */
+    --fs-split-text: 16px;         /* 正文 */
+    --fs-work-heading: 16px;       /* 小标题（BEHIND THE SCENE、WIP 等） */
+    --fs-work-caption: 14px;       /* 图注、年份信息 */
+    --split-text-gap: 16px;        /* 正文段落之间（电脑端 24） */
+
+    /* 间距（电脑端：网格 16 / 小标题上方 72 / 页面底部 90） */
+    --grid-gap-x: 12px;            /* 网格横向间距（单栏后主要用于并排元素） */
+    --grid-gap-y: 12px;            /* 上下模块、图片之间的间距 */
+    --work-section-gap: 36px;      /* 小标题上方的大间距 */
+    --work-pad-bottom: 68px;       /* 最后一个模块到页面底部 */
+    --work-heading-top: 12px;      /* 小标题上下留白 */
+    --work-heading-bottom: 12px;
+      --caption-gap-top: 6px;        /* 图片 -> 图注 */
+    --caption-gap-bottom: 6px;    /* 图注 -> 下一张图 */
+    --hero-text-gap: 20px;         /* 首图 -> 正文 */
+    --text-image-gap: 23px;        /* 正文（年份信息）-> 下面第一张图 */
+    --bio-icon-tap: 9px;           /* bio 图标点击区域四周扩出的距离（26 + 9 × 2 ≈ 44px） */
+    --bio-icon-scale: 0.9;           /* 图标缩放：1 = 现在的大小，0.8 = 缩小到 80% */
+    --bio-icon-gap-m: 18px;        /* 手机端图标之间的距离（图标可见部分之间） */
+    --bio-icons-offset: 1px;    /* bio：三个图标整体往右移的距离（实测 Instagram 可见左边比正文文字左边靠左约 0.75px） */
+    --bio-top-gap: var(--grid-gap-y);   /* bio 页：页眉底部 -> 图标顶部 */
+    --bio-pad-bottom: var(--work-section-gap);   /* bio：经历列表最后一条 -> 页面底部（bio 没有页脚，默认 = 段后距离 36px） */
+  }
+
+  /* 文字行上下的距离（固定值，不跟随 --content-margin） */
+  main.work > .module-textrow {
+    margin-top: var(--hero-text-gap);
+  }
+  main.work > .module-textrow + * {
+    margin-top: var(--text-image-gap);
+  }
+
+  /* 网格（三栏、两栏 .cols-2、.gap-wide）改为一栏，按 HTML 顺序从上到下排列；
+     .span-2 / .start-2 和 HTML 里内联的 grid-row / grid-column 全部归位 */
+  .module-grid:not(.bio-grid),
+  .img-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .module-grid:not(.bio-grid) > * {
+    grid-column: auto !important;  /* !important：覆盖 HTML 里的内联 style */
+    grid-row: auto !important;
+  }
+
+  /* 等高并排（.module-row、.equal-row）改为上下排列，每张铺满宽度 */
+  .module-row,
+  .equal-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .module-row > *,
+  .equal-row > * {
+    flex: none;
+    width: 100%;
+  }
+  /* BEHIND THE SCENE 里的并排图上下排列后：图注 -> 下一张图 = --caption-gap-bottom，
+     和其他图注一致（否则沿用并排时的横向间距 --grid-gap-x） */
+  .module-behind .equal-row {
+    row-gap: var(--caption-gap-bottom);
+  }
+  /* 并排模块 .module-row 上下排列后：上下间距 = 图片之间的 --grid-gap-y（否则沿用横向的 --grid-gap-x） */
+  .module-row {
+    row-gap: var(--grid-gap-y);
+  }
+
+  /* 左文右图 / 正文 + 年份信息：改为上下排列，都铺满宽度 */
+  .module-split,
+  .module-textrow {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--split-text-gap);
+  }
+
+  /* 顶部主图 .hero-fill：和 .hero-bleed 一样，宽度铺满、保持原比例、不裁切 */
+  .hero-fill {
+    height: auto;
+  }
+  .hero-fill > img,
+  .hero-fill > video {
+    height: auto;
+  }
+
+  /* Foodies' Home 海报：单张铺满宽度，取消高度限制 */
+  .page-foodies .module-grid img {
+    width: 100%;
+    max-height: none;
+  }
+
+  /* 作品名：正文第一段前一行，字号字重同 BEHIND THE SCENE 小标题，但没有它的上下 padding。
+     上方距离 = 文字行的 --hero-text-gap，到第一段正文 = .split-text 的 --split-text-gap */
+  .mobile-work-title {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--fs-work-heading);
+    font-weight: var(--fw-work-heading);
+    text-transform: uppercase;             /* 和页眉作品名一致，HTML 保持原大小写 */
+  }
+
+  /* Foodies' Home 顺序：第一张海报 -> 作品名和正文、年份 -> 其余三张海报。
+     只用 CSS：两组海报 display: contents，图片直接参与 main 的竖排，再用 order 排序；
+     HTML 里的图片顺序不变 */
+  .page-foodies main.work {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-foodies main.work > * {
+    flex-shrink: 0;                        /* 滚动区域里不压缩 */
+  }
+  .page-foodies main.work > .module-grid {
+    display: contents;
+  }
+  .page-foodies main.work > .module-textrow {
+    order: 1;                              /* 第一张海报（order 0）之后 */
+  }
+  .page-foodies main.work > .module-grid > img {
+    order: 2;                              /* 其余海报排在文字后面，彼此保持 HTML 顺序 */
+    flex-shrink: 0;
+    width: auto;
+    margin: var(--grid-gap-y) var(--content-margin) 0;   /* 海报之间 = 原来的网格行距 */
+  }
+  .page-foodies main.work > .module-grid:first-child > img:first-child {
+    order: 0;                              /* 第一张海报留在最上面 */
+    margin-top: 0;
+  }
+  .page-foodies main.work > .module-grid:first-child > img:nth-child(2) {
+    margin-top: var(--text-image-gap);     /* 年份信息 -> 下面第一张海报 */
+  }
+
+  /* ---- bio 页：铺满宽度，顺序 图标 -> 正文 -> SELECTED EXPERIENCE -> 经历列表 ----
+     只用 CSS：.span-2 设为 display: contents，正文、标题、列表和图标都成为同一个
+     单栏网格的直接子项，再用 order 把图标排到最前面。HTML 不变。 */
+  main.work > .bio-grid {
+    margin-top: var(--bio-top-gap);        /* 页眉底部 -> 图标顶部（最高的 LinkedIn 顶部没有留白） */
+  }
+  /* bio 页没有底部页脚：底部留白用 --bio-pad-bottom，其他作品页仍是 --work-pad-bottom */
+  main.work:has(> .bio-grid) {
+    padding-bottom: var(--bio-pad-bottom);
+  }
+  .module-grid.bio-grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;                            /* 各段距离只由下面的 margin-top 决定 */
+  }
+  .bio-grid > .span-2 {
+    display: contents;
+  }
+  .bio-icons  { order: -1; }               /* 排在正文（order 0）前面 */
+  .bio-heading { order: 2; }
+  .bio-list   { order: 3; }                /* 最后一条 -> 页面底部：main.work 的 --work-pad-bottom */
+
+  /* 图标尺寸按 --bio-icon-scale 缩放（LinkedIn 保持电脑端的 23px 比例）。
+     三个 SVG 的可见图形和图片框之间有留白（viewBox 24 格里）：
+       Instagram 四边各 1/24；Email 左右 1/24、上下 3/24；LinkedIn 没有留白。
+     下面用负 margin 抵消左右留白，让间距量的是可见部分 */
+  .bio-icons img {
+    height: calc(var(--bio-icon-size) * var(--bio-icon-scale));
+  }
+  .bio-icons img[src*="linkedin"] {
+    height: calc(23px * var(--bio-icon-scale));
+  }
+  .bio-icons img[src*="instagram"],
+  .bio-icons img[src*="email"] {
+    margin: 0 calc(var(--bio-icon-size) * var(--bio-icon-scale) / -24);
+  }
+
+  .bio-icons {
+    position: static;                      /* 取消 sticky，随页面正常滚动 */
+    justify-content: flex-start;           /* 靠左对齐 */
+    gap: var(--bio-icon-gap-m);            /* 图标可见部分之间的距离 */
+    margin-left: var(--bio-icons-offset);  /* 三个图标整体右移，和正文文字左边对齐（加在容器上，不受 a / img 的 margin 简写影响） */
+  }
+  /* 图标底部（最低的是 Instagram，底部留白 1/24）-> 正文第一段文字顶部 = --split-text-gap */
+  .bio-grid .split-text {
+    margin-top: calc(var(--split-text-gap) - var(--bio-icon-size) * var(--bio-icon-scale) / 24);
+  }
+  /* 正文最后一段 -> SELECTED EXPERIENCE：和作品页小标题上方一样，用 --work-section-gap
+     （电脑端的 .bio-heading 规则已经是这样，这里写明以免被上面的排序影响） */
+  .bio-heading {
+    margin-top: var(--work-section-gap);
+  }
+
+  /* 点击区域：四周扩出 --bio-icon-tap，再用负 margin 抵消，图标大小和位置不变。
+     相邻图标之间最多扩出间距的一半，点击区域刚好相接、不重叠；最外两侧扩满 --bio-icon-tap；
+     上方最多扩到页眉底部（--bio-top-gap），不盖住页眉 */
+  .bio-icons a {
+    --bio-tap-side: min(var(--bio-icon-tap), calc(var(--bio-icon-gap-m) / 2));
+    --bio-tap-top: min(var(--bio-icon-tap), var(--bio-top-gap));
+    padding: var(--bio-tap-top) var(--bio-tap-side) var(--bio-icon-tap);
+    margin: calc(-1 * var(--bio-tap-top)) calc(-1 * var(--bio-tap-side)) calc(-1 * var(--bio-icon-tap));
+  }
+  .bio-icons a:first-child {
+    padding-left: var(--bio-icon-tap);
+    margin-left: calc(-1 * var(--bio-icon-tap));
+  }
+  .bio-icons a:last-child {
+    padding-right: var(--bio-icon-tap);
+    margin-right: calc(-1 * var(--bio-icon-tap));
+  }
 }

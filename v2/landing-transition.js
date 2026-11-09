@@ -27,6 +27,10 @@
   function reducedMotion() {
     return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
+  // 手机（≤ 767px）不播放无缝过渡，直接打开作品页（与 landing-entry.js 相同的宽度判断）
+  function phone() {
+    return window.matchMedia && matchMedia("(max-width: 767px)").matches;
+  }
   function header() { return document.querySelector(".site-header"); }
   function clearNames() {
     document.querySelectorAll("[data-vt-named]").forEach(function (el) {
@@ -93,7 +97,7 @@
       var push = act ? act.navigationType === "push" : true;
       var slide = HERO_PAGES.indexOf(target) !== -1 && slideFor(target);
       var media = slide && slide.querySelector("img, video");  // absent when the file is missing
-      if (!push || !media || reducedMotion()) { skip(e.viewTransition); return; }
+      if (!push || !media || reducedMotion() || phone()) { skip(e.viewTransition); return; }
       name(media, HERO_NAME);
       name(header(), HEADER_NAME);
     });
@@ -121,7 +125,7 @@
     var hero = document.getElementById("page-hero");
     // Only a fresh click from landing animates; reload, Back/Forward, index,
     // Previous/Next and direct visits are skipped.
-    if (a.type !== "push" || a.from !== "landing.html" || !hero || reducedMotion()) {
+    if (a.type !== "push" || a.from !== "landing.html" || !hero || reducedMotion() || phone()) {
       skip(e.viewTransition);
       settle();
       return;

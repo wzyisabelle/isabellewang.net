@@ -85,6 +85,7 @@
   /* Spacing / layout */
   --content-margin: 48px;   /* left/right content inset for header + rows */
   --header-pad-y: 16px;     /* header top/bottom padding */
+  --nav-gap: 40px;          /* gap between the header nav links */
   --row-pad-y: 6px;        /* each row top/bottom padding */
   --list-top-gap: 20px;     /* gap between header divider and first section */
   --section-gap: 40px;      /* gap between the two sections */
@@ -192,7 +193,7 @@ body > main {
   justify-self: end;                /* same right position as before (at --content-margin) */
   display: flex;
   align-items: baseline;
-  gap: 40px;
+  gap: var(--nav-gap);
 }
 
 .site-nav a {
@@ -203,8 +204,12 @@ body > main {
   text-decoration: none;
   white-space: nowrap;
 }
-.site-nav a:hover {
-  opacity: 0.5;                   /* same hover as .bio-icons a and .site-footer a */
+/* hover effects only on devices that can hover, so a tap on a phone never leaves
+   a stuck hover state (same for the other :hover rules below and in work.css) */
+@media (hover: hover) {
+  .site-nav a:hover {
+    opacity: 0.5;                 /* same hover as .bio-icons a and .site-footer a */
+  }
 }
 
 /* ------------------------------------------------------------------ List -- */
@@ -268,20 +273,22 @@ body > main {
    width, text unmoved) widened by --row-hover-bleed on each side via solid shadows;
    the -1px shadows cover the divider above, and the row's own divider sits under
    the black background. */
-.row-item:hover {
-  color: var(--color-invert-fg);
-}
-.row-item:hover .row-inner {
-  background: var(--color-invert-bg);
-  box-shadow:
-    0 -1px 0 0 var(--color-invert-bg),
-    calc(-1 * var(--row-hover-bleed)) 0 0 0 var(--color-invert-bg),
-    var(--row-hover-bleed) 0 0 0 var(--color-invert-bg),
-    calc(-1 * var(--row-hover-bleed)) -1px 0 0 var(--color-invert-bg),
-    var(--row-hover-bleed) -1px 0 0 var(--color-invert-bg);
-}
-.row-item:hover .cell {
-  color: var(--color-invert-fg);
+@media (hover: hover) {
+  .row-item:hover {
+    color: var(--color-invert-fg);
+  }
+  .row-item:hover .row-inner {
+    background: var(--color-invert-bg);
+    box-shadow:
+      0 -1px 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) 0 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) 0 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) -1px 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) -1px 0 0 var(--color-invert-bg);
+  }
+  .row-item:hover .cell {
+    color: var(--color-invert-fg);
+  }
 }
 
 /* ------------------------------------------------------------- Thumbnail -- */
@@ -306,4 +313,92 @@ body > main {
   min-height: 60vh;
   font-weight: var(--fw-regular);
   font-size: var(--fs-section);
+}
+
+/* ===========================================================================
+   手机 / 平板适配 — 所有数值集中在这里，电脑端（≥ 1024px）不受影响
+   =========================================================================== */
+
+/* 不支持悬停的设备（手机、平板）：不显示 index 缩略图，点击直接跳转 */
+@media (hover: none) {
+  :root {
+    --row-press-delay: 100ms; /* index：手指点一行后，黑条显示多久再跳转（建议不超过 150ms） */
+  }
+
+  #thumb { display: none !important; }
+
+  /* index 点击反馈：手指按下一行时出现和电脑端悬停一样的黑条（.is-pressed 由 index.js 加上），
+     并去掉浏览器默认的灰色点击高亮 */
+  .row-item {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .row-item.is-pressed {
+    color: var(--color-invert-fg);
+  }
+  .row-item.is-pressed .row-inner {
+    background: var(--color-invert-bg);
+    box-shadow:
+      0 -1px 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) 0 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) 0 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) -1px 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) -1px 0 0 var(--color-invert-bg);
+  }
+  .row-item.is-pressed .cell {
+    color: var(--color-invert-fg);
+  }
+}
+
+/* ---- 平板 + 手机（≤ 1023px） ---- */
+@media (max-width: 1023px) {
+  :root {
+    --nav-tap-y: 14px;        /* 导航点击区域上下各扩出的距离（文字 16–18px + 14 × 2 ≥ 44px 高） */
+    --nav-tap-x: 12px;        /* 导航点击区域左右各扩出的距离（手机上 = 导航间距的一半，两个链接刚好相接） */
+  }
+
+  /* 页眉只留左边名字、右边导航：隐藏中间的作品名 */
+  .page-title { display: none; }
+
+  /* 导航：用 padding 扩大点击范围，再用负 margin 抵消，文字位置和外观不变 */
+  .site-nav a {
+    padding: var(--nav-tap-y) var(--nav-tap-x);
+    margin: calc(-1 * var(--nav-tap-y)) calc(-1 * var(--nav-tap-x));
+  }
+
+  /* index：按单词换行，不在单词中间截断 */
+  .cell { overflow-wrap: normal; }
+}
+
+/* ---- 手机（≤ 767px） ---- */
+@media (max-width: 767px) {
+  :root {
+    --content-margin: 12px;   /* 左右边距（页眉、列表、作品页模块共用） */
+    --fs-brand: 20px;         /* 左上角 iSABELLE WANG 字号 */
+    --fs-nav: 16px;           /* 导航字号（页脚 Previous / Next 也共用这个变量） */
+    --nav-gap: 24px;          /* Index 和 Bio 之间的距离 */
+    --header-pad-y: 8px;     /* 页眉上下留白，越小页眉越窄 */
+    /* 导航点击区域 --nav-tap-y / --nav-tap-x 在上面的平板 + 手机设置里 */
+
+    /* index 只显示两列：作品名占满年份以外的全部宽度，年份按内容宽度
+       （电脑端的 --col-title / --col-year 百分比列宽在手机上不再使用） */
+    --index-year-gap: 16px;   /* 作品名列和年份列之间的距离 */
+
+    /* index 字号：分区标题（ART WORK / YEAR）和每一行，都和右上角导航一样大 */
+    --fs-section: var(--fs-nav);
+    --fs-row: var(--fs-nav);
+
+    /* index：页眉底部 -> ART WORK 这一行的距离（= bio 页页眉到第一行正文的距离 12px） */
+    --index-top-gap: 12px;
+  }
+
+  /* index：隐藏 Tags 列（包括表头） */
+  .row-inner { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--index-year-gap); }
+  .cell-tags { display: none; }
+
+  /* index：年份列（表头 YEAR 和每一行）右对齐，贴着右边距 */
+  .cell-year { text-align: right; }
+
+  /* index 顶部间距：原来是 --list-top-gap 20px + 表头行上内边距 --row-pad-y 6px = 26px；
+     改为由 --index-top-gap 控制（减去行本身的上内边距，所以页眉 -> 表头行刚好等于这个值） */
+  .content { padding-top: max(0px, calc(var(--index-top-gap) - var(--row-pad-y))); }
 }
