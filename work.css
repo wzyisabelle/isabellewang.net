@@ -510,15 +510,6 @@ img[src*="linkedin"] {
     row-gap: var(--split-text-gap);
   }
 
-  /* 顶部主图 .hero-fill：和 .hero-bleed 一样，宽度铺满、保持原比例、不裁切 */
-  .hero-fill {
-    height: auto;
-  }
-  .hero-fill > img,
-  .hero-fill > video {
-    height: auto;
-  }
-
   /* Foodies' Home 海报：单张铺满宽度，取消高度限制 */
   .page-foodies .module-grid img {
     width: 100%;
@@ -633,5 +624,20 @@ img[src*="linkedin"] {
   .bio-icons a:last-child {
     padding-right: var(--bio-icon-tap);
     margin-right: calc(-1 * var(--bio-icon-tap));
+  }
+}
+
+/* ==========================================================================
+   顶部主图 .hero-fill：手机（≤767px）或任何竖屏（例如 iPad 竖着拿）时，
+   和 .hero-bleed 一样宽度铺满、保持原比例、不裁切。
+   条件和 landing 选择竖版素材一致；平板横屏、电脑仍是一屏铺满并裁切。
+   ========================================================================== */
+@media (max-width: 767px), (orientation: portrait) {
+  .hero-fill {
+    height: auto;
+  }
+  .hero-fill > img,
+  .hero-fill > video {
+    height: auto;
   }
 }
