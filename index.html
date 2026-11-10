@@ -50,18 +50,19 @@
                 以 assets/ 开头），例如作品页已有的视频：
                   path: "assets/images/projects/iwd/iwd2-web.mp4"
                 写了 path 就不需要 file；不写 path 时照常用 file（默认在 landing 文件夹）
-       ---- 手机版（屏幕宽度 ≤ 767px）可选字段，不写 = 手机和电脑用同一个文件 ----
-         mobile    : 可选，手机上改用的文件。写法和 path / file 一样：
+       ---- 竖版素材可选字段：屏幕宽度 ≤ 767px，或者竖屏（例如平板竖着拿）时使用；
+            平板横屏、电脑横屏仍用电脑版。不写 = 所有屏幕用同一个文件 ----
+         mobile    : 可选，手机 / 竖屏时改用的文件。写法和 path / file 一样：
                        含 "/" 的当完整路径（相对网站根目录，以 assets/ 开头），
                        只写文件名的从 landing 文件夹里找
                      例如 mobile: "assets/images/projects/aloe/4.png"
-                     手机上只下载这个文件，不会再下载电脑版；
+                     手机 / 竖屏时只下载这个文件，不会再下载电脑版；
                      手机版和电脑版的类型可以不同（电脑版视频、手机版图片也行）：
                      按扩展名自动判断，.mp4 / .webm / .mov / .m4v = 视频，其他 = 图片；
                      扩展名判断不了时，用 mobileType: "image" 或 "video" 写明
-         mobilePos : 可选，手机版的裁切位置（object-position），不写 = "center" 居中，
+         mobilePos : 可选，手机 / 竖屏版的裁切位置（object-position），不写 = "center" 居中，
                      不继承电脑版的 pos。例如 "50% 30%"、"center top"
-         横竖屏切换或窗口宽度跨过 767px 时会自动换成对应版本
+         旋转屏幕（横竖屏切换）或窗口宽度跨过 767px 时会自动换成对应版本
        更换文件或链接：改对应项的 file（或 path）/ link
        调整顺序：上下移动整行（第一行 = 打开首页时显示的第一屏）
        增加一屏：复制一行并修改；删除一屏：删掉那一行
@@ -114,8 +115,8 @@
         return slide;
       }
 
-      // phone (≤767px, same breakpoint as the CSS) uses item.mobile when given
-      var PHONE = window.matchMedia("(max-width: 767px)");
+      // phone (≤767px, same breakpoint as the CSS) or any portrait screen uses item.mobile when given
+      var PHONE = window.matchMedia("(max-width: 767px), (orientation: portrait)");
       var VIDEO_EXT = /\.(mp4|webm|mov|m4v)(\?|#|$)/i;
       var io = null;             // video observer, created below; null until then
 
@@ -168,7 +169,7 @@
         items.push(entry);
       });
 
-      // Crossing 767px (rotation, window resize): swap in the other version,
+      // Crossing 767px or portrait/landscape (rotation, window resize): swap in the other version,
       // in whichever slide (real or copy) currently holds it.
       function swapVersions() {
         items.forEach(function (e) {
