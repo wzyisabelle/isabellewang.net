@@ -40,17 +40,32 @@
                 以 ../assets/ 开头），例如作品页已有的视频：
                   path: "../assets/images/projects/iwd/iwd2-web.mp4"
                 写了 path 就不需要 file；不写 path 时照常用 file（默认在 landing 文件夹）
+       ---- 手机版（屏幕宽度 ≤ 767px）可选字段，不写 = 手机和电脑用同一个文件 ----
+         mobile    : 可选，手机上改用的文件。写法和 path / file 一样：
+                       含 "/" 的当完整路径（相对 v2/，以 ../assets/ 开头），
+                       只写文件名的从 landing 文件夹里找
+                     例如 mobile: "../assets/images/projects/aloe/4.png"
+                     手机上只下载这个文件，不会再下载电脑版；
+                     手机版和电脑版的类型可以不同（电脑版视频、手机版图片也行）：
+                     按扩展名自动判断，.mp4 / .webm / .mov / .m4v = 视频，其他 = 图片；
+                     扩展名判断不了时，用 mobileType: "image" 或 "video" 写明
+         mobilePos : 可选，手机版的裁切位置（object-position），不写 = "center" 居中，
+                     不继承电脑版的 pos。例如 "50% 30%"、"center top"
+         横竖屏切换或窗口宽度跨过 767px 时会自动换成对应版本
        更换文件或链接：改对应项的 file（或 path）/ link
        调整顺序：上下移动整行（第一行 = 打开首页时显示的第一屏）
        增加一屏：复制一行并修改；删除一屏：删掉那一行
        无限循环会根据这个列表自动生成，增删、调整顺序都不需要改下面的代码
        ====================================================================== */
     var SLIDES = [
-      { path: "../assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html" },
+           { path: "../assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html",
+        mobile: "../assets/images/projects/through_the_stone_2/9.png", mobilePos: "50% 56%" },
       { path: "../assets/images/projects/Melodic_Echo_Odyssey/preview.png", type: "image", link: "melodic_echo_odyssey.html" },
-      { file: "vernal_soiree.mp4",                                           type: "video", link: "vernal_soiree.html" },
       { path: "../assets/images/projects/iwd/iwd2-web.mp4",                 type: "video", link: "nike_iwd.html" },
-      { path: "../assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html" }
+      { file: "vernal_soiree.mp4",                                           type: "video", link: "vernal_soiree.html",
+        mobile: "vs-vertical-web.mp4", mobilePos: "50% 50%" },
+      { path: "../assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html",
+                mobile: "../assets/images/projects/aloe/4.png", mobilePos: "60% center" }
     ];
 
     // 素材文件夹 media folder (relative to v2/)
@@ -88,10 +103,21 @@
         return slide;
       }
 
-      SLIDES.forEach(function (item, i) {
-        var slide = makeSlide(item, false);
+      // phone (≤767px, same breakpoint as the CSS) uses item.mobile when given
+      var PHONE = window.matchMedia("(max-width: 767px)");
+      var VIDEO_EXT = /\.(mp4|webm|mov|m4v)(\?|#|$)/i;
+      var io = null;             // video observer, created below; null until then
+
+      // The <img>/<video> for an item, desktop or phone version.
+      function makeMedia(item, i, entry, phone) {
+        var src = item.path || (MEDIA_DIR + item.file);    // path (full, relative to v2/) wins
+        var type = item.type;
+        if (phone) {
+          src = item.mobile.indexOf("/") !== -1 ? item.mobile : MEDIA_DIR + item.mobile;
+          type = item.mobileType || (VIDEO_EXT.test(item.mobile) ? "video" : "image");
+        }
         var media;
-        if (item.type === "video") {
+        if (type === "video") {
           media = document.createElement("video");
           media.muted = true;              // property too, so autoplay rules allow play()
           media.setAttribute("muted", "");
@@ -100,6 +126,7 @@
           media.setAttribute("playsinline", "");
           media.preload = "metadata";      // only the header is fetched until the slide is shown
           videos.push(media);
+          if (io) io.observe(media);
         } else {
           media = document.createElement("img");
           media.alt = "";
@@ -107,11 +134,11 @@
           // its copy above), so load them normally; the rest lazily
           if (i > 0 && i < N - 1) media.loading = "lazy";
         }
-        // path (full, relative to v2/) wins; otherwise file inside MEDIA_DIR
-        var src = item.path || (MEDIA_DIR + item.file);
-        var entry = { content: media, slides: [slide] };
+        // phone version crops around mobilePos (default center), not the desktop pos
+        if (phone) media.style.setProperty("--pos", item.mobilePos || "center");
         // Missing or failed file: show the expected path instead of the media.
         media.addEventListener("error", function () {
+          if (entry.content !== media) return;            // already swapped for the other version
           var note = document.createElement("span");
           note.className = "slide-missing";
           note.textContent = src.replace(/^\.\.\//, "");   // e.g. assets/images/landing/vernal_soiree.mp4
@@ -119,9 +146,38 @@
           entry.content = note;
         });
         media.src = src;
-        slide.appendChild(media);
+        return media;
+      }
+
+      SLIDES.forEach(function (item, i) {
+        var slide = makeSlide(item, false);
+        var entry = { item: item, i: i, slides: [slide], phone: !!item.mobile && PHONE.matches };
+        entry.content = makeMedia(item, i, entry, entry.phone);
+        slide.appendChild(entry.content);
         items.push(entry);
       });
+
+      // Crossing 767px (rotation, window resize): swap in the other version,
+      // in whichever slide (real or copy) currently holds it.
+      function swapVersions() {
+        items.forEach(function (e) {
+          var phone = !!e.item.mobile && PHONE.matches;
+          if (phone === e.phone) return;
+          e.phone = phone;
+          var old = e.content;
+          if (old.tagName === "VIDEO") {
+            old.pause();
+            if (io) io.unobserve(old);
+            videos.splice(videos.indexOf(old), 1);
+          }
+          e.content = makeMedia(e.item, e.i, e, phone);
+          old.replaceWith(e.content);
+          if (old.tagName === "IMG") old.removeAttribute("src");                       // stop the old download
+          if (old.tagName === "VIDEO") { old.removeAttribute("src"); old.load(); }
+        });
+      }
+      if (PHONE.addEventListener) PHONE.addEventListener("change", swapVersions);
+      else if (PHONE.addListener) PHONE.addListener(swapVersions);   // Safari < 14
 
       // copies: last item above the first slide, first item below the last
       var top = makeSlide(SLIDES[N - 1], true), bottom = makeSlide(SLIDES[0], true);
@@ -190,8 +246,8 @@
 
       // Play a video only while its slide is on screen; pause it when it leaves.
       // (The observer follows the element, so it also works while it sits in a copy.)
-      if (videos.length && "IntersectionObserver" in window) {
-        var io = new IntersectionObserver(function (entries) {
+      if ("IntersectionObserver" in window) {
+        io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             var v = e.target;
             if (e.isIntersecting) {
