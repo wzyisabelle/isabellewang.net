@@ -3,43 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Father-Daughter Companion — Isabelle WANG ZIYU</title>
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Father-Daughter Companion | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="A publication project that began from a familiar tension in East Asian father-daughter relationships, and evolved into a way of communicating with a father…" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/father_daughter.html" />
+  <meta property="og:title" content="Father-Daughter Companion | Isabelle Wang" />
+  <meta property="og:description" content="A publication project that began from a familiar tension in East Asian father-daughter relationships, and evolved into a way of communicating with a father…" />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Artworks</a>
-      <a href="bio.html" class="nav-link">Bio</a>
-    </div>
-    <span class="nav-name">Isabelle WANG ZIYU</span>
-    <div class="nav-right">
-      <div class="nav-pager">
-        <a href="vernal_soiree.html">&lt;&lt; Previous</a>
-        <a href="foodies_home.html">Next &gt;&gt;</a>
-      </div>
-      <div class="nav-divider"></div>
-      <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" style="width:17px;height:17px;"></a>
-      <a href="mailto:isabelle.wangzy@gmail.com" class="nav-icon"><img src="assets/icons/email-svgrepo-com.svg" alt="Email"></a>
-    </div>
-  </nav>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <span class="page-title">Father-Daughter Companion</span>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
 
-  <main class="project">
-    <div class="project-left">
-      <h1 class="project-title">Father-Daughter Companion</h1>
-      <p class="project-desc">A publication project that began from a familiar tension in East Asian father-daughter relationships, and evolved into a way of communicating with a father known for his serious lectures. The work takes the form of a five-issue newspaper set within the fictional scenario of a "father's office," including a whimsical illustrated guide addressed to him. What started as satire gradually turned into affection: an appreciation of my great dad, offered through the language of design.</p>
-      <p class="project-meta">2023. Publication design. Five-issue newspaper, illustration.</p>
-    </div>
-    <div class="project-right">
-      <img src="assets/images/projects/father-daughter/1.jpg" alt="">
-      <img src="assets/images/projects/father-daughter/2.jpg" alt="">
-      <img src="assets/images/projects/father-daughter/3.JPG" alt="">
+  <main class="work">
+
+    <!-- 1. 7.png — full window width, natural height (.hero-bleed) -->
+    <section class="module-full hero-bleed">
+      <img src="assets/images/projects/father-daughter/7.png" alt="">
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <h1 class="mobile-work-title">Father-Daughter Companion</h1>   <!-- 作品名：只在手机上显示 -->
+        <p class="project-desc">A publication project that began from a familiar tension in East Asian father-daughter relationships, and evolved into a way of communicating with a father known for his serious lectures. The work takes the form of a five-issue newspaper set within the fictional scenario of a "father's office," including a whimsical illustrated guide addressed to him. What started as satire gradually turned into affection: an appreciation of my great dad, offered through the language of design.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2023. Publication design. Five-issue newspaper, illustration.</p>
+      </div>
+    </section>
+
+    <!-- 3. 3.jpg — columns 1-2 (gap above = one unit distance) -->
+    <section class="module-grid gap-content">
+      <img class="span-2" src="assets/images/projects/father-daughter/3.jpg" alt="">
+    </section>
+
+    <!-- 4. 4.jpg + 6.jpg — two equal columns (1:1) -->
+    <section class="module-grid cols-2">
       <img src="assets/images/projects/father-daughter/4.jpg" alt="">
-      <img src="assets/images/projects/father-daughter/5.JPG" alt="">
-      <img src="assets/images/projects/father-daughter/6.JPG" alt="">
-      <p class="project-caption">Installation view, graduation exhibition, Tongji University, 2023.</p>
-    </div>
+      <img src="assets/images/projects/father-daughter/6.jpg" alt="">
+    </section>
+
+    <!-- 5. 5.jpg — columns 1-2 -->
+    <section class="module-grid">
+      <img class="span-2" src="assets/images/projects/father-daughter/5.jpg" alt="">
+    </section>
+
   </main>
+
+  <footer class="site-footer">
+    <a href="vernal_soiree.html">&lt; Previous</a>
+    <a href="foodies_home.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
 </body>
 </html>

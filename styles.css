@@ -1,197 +1,404 @@
-/* ── FONTS ── */
+/* ===========================================================================
+   isabellewang.net — v2
+   All tunable values live in :root below. Change them here to restyle globally.
+   =========================================================================== */
+
+/* ---- Fonts: self-hosted Rubik (woff2), no Google Fonts ---- */
 @font-face {
-  font-family: 'NeutraText';
-  src: url('assets/fonts/NeutraText-BookAlt.otf') format('opentype');
+  font-family: "Rubik";
+  src: url("assets/Rubik/Rubik-Light.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik";
+  src: url("assets/Rubik/Rubik-Regular.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik";
+  src: url("assets/Rubik/Rubik-Medium.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik";
+  src: url("assets/Rubik/Rubik-Bold.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik";
+  src: url("assets/Rubik/Rubik-LightItalic.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
 }
 
-@font-face {
-  font-family: 'NeutraTextDemi';
-  src: url('assets/fonts/NeutraText-DemiAlt.otf') format('opentype');
+:root {
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-fg: #000000;
+  --color-invert-bg: #000000;   /* row background on hover */
+  --color-invert-fg: #ffffff;   /* row text on hover */
+  --color-line: #000000;        /* all dividers */
+
+  /* Line (divider) width */
+  --line-width: 0.5px;
+  --header-line-width: 1px;
+  --header-line-color: #ffffff;
+
+  /* Header height = brand line (line-height:1) + top & bottom padding + bottom border.
+     This is a calc() of the vars below, so it stays correct automatically if you
+     change --fs-brand or --header-pad-y — no manual update needed (as long as the
+     brand stays the tallest item and keeps line-height:1). */
+  --header-height: calc(var(--fs-brand) + 2 * var(--header-pad-y) + var(--header-line-width));
+
+  /* Font family + fallback to system sans-serif */
+  --font-sans: "Rubik", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-page-title: 500;  /* centered work title in the header (Rubik Medium) */
+  --fw-nav: 300;         /* header nav + footer weight (shared; pairs with --fs-nav) */
+
+  /* Font sizes */
+  --fs-brand: 24px;    /* top-left "iSABELLE WANG"             (Rubik Bold)    */
+  --fs-nav: 18px;      /* top-right nav                        (Rubik Regular) */
+  --fs-section: 18px;  /* section title + column headers       (Rubik Medium)  */
+  --fs-row: 18px;      /* list row content                     (Rubik Light)   */
+  --fs-page-title: 18px; /* centered work title in the header  (Rubik Medium)  */
+
+  /* Spacing / layout */
+  --content-margin: 48px;   /* left/right content inset for header + rows */
+  --header-pad-y: 16px;     /* header top/bottom padding */
+  --nav-gap: 40px;          /* gap between the header nav links */
+  --row-pad-y: 6px;        /* each row top/bottom padding */
+  --list-top-gap: 20px;     /* gap between header divider and first section */
+  --section-gap: 40px;      /* gap between the two sections */
+
+  /* Column widths (sum = 100% of the inset content area) */
+  --col-title: 35%;
+  --col-year: 20%;
+  --col-medium: 45%;
+
+  /* Thumbnail cursor offset */
+  --thumb-offset-x: 20px;
+  --thumb-stroke: 2px;
+  --thumb-stroke-color: #ffff00;
+
+  /* Index row hover bar: how far it extends past each end of the divider */
+  --row-hover-bleed: 5px;
+
 }
 
-@font-face {
-  font-family: 'NeutraTextLightItalic';
-  src: url('assets/fonts/NeutraText-LightItalicAlt.otf') format('opentype');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'NeutraTextLight';
-  src: url('assets/fonts/NeutraText-LightAlt.otf') format('opentype');
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;             /* fallback for browsers without dvh */
+  height: 100dvh;
+  overflow: hidden;          /* the page itself never scrolls -> no page-level bounce */
+  overscroll-behavior: none; /* kill elastic rubber-band */
 }
-
-/* ── RESET ── */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scrollbar-gutter: stable; }
 
 body {
-  font-family: 'NeutraText', Arial, sans-serif;
-  background: #ffffff;
-  color: #111111;
-  min-height: 100vh;
-  padding: 48px;
-  padding-top: 80px; /* nav height only — columns control their own top gap */
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-light);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;    /* header | scrolling main | (footer) */
 }
 
-/* ── NAV ── */
-.nav {
+/* The ONLY scrolling region on every page: the <main> between the fixed header
+   and (on work pages) the fixed footer. All its content scrolls together; nothing
+   inside it is sticky or fixed. Because header/footer are siblings outside it,
+   they physically cannot move. */
+body > main {
+  flex: 1 1 auto;
+  min-height: 0;             /* allow the flex child to shrink so it can scroll */
+  overflow-y: auto;
+  overscroll-behavior: none;
+  scrollbar-gutter: stable;  /* always reserve the scrollbar's width (0 with overlay scrollbars), so
+                                every page's right edge is the same whether or not it scrolls */
+}
+
+/* Keep any anchored (#id) target clear of the sticky header. None exist today;
+   this future-proofs in-page jumps so content isn't hidden under the header. */
+:target {
+  scroll-margin-top: calc(var(--header-height) + 8px);
+}
+
+/* ---------------------------------------------------------------- Header -- */
+.site-header {
+  flex: 0 0 auto;                   /* fixed top bar, outside the scroll region */
+  background: var(--color-bg);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* centre cell is centred in the window */
+  align-items: baseline;            /* brand / title / nav share a text baseline */
+  padding: var(--header-pad-y) var(--content-margin);
+  border-bottom: var(--header-line-width) solid var(--header-line-color);
+  overflow: hidden;                 /* makes it a scroll container so the gutter below applies */
+  scrollbar-gutter: stable;         /* reserve the same right-hand gap as main's scrollbar */
+}
+
+.brand {
+  grid-column: 1;
+  justify-self: start;              /* same left position as before (at --content-margin) */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-brand);
+  line-height: 1;
+  color: var(--color-fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Centered work title (project pages). Empty/absent on index & bio -> centre column
+   is just empty; brand & nav keep their explicit columns, so nothing shifts. */
+.page-title {
+  grid-column: 2;
+  justify-self: center;
+  font-weight: var(--fw-page-title);
+  font-size: var(--fs-page-title);
+  line-height: 1;
+  text-transform: uppercase;        /* HTML keeps normal case */
+  color: var(--color-fg);
+  white-space: nowrap;
+}
+
+.site-nav {
+  grid-column: 3;
+  justify-self: end;                /* same right position as before (at --content-margin) */
+  display: flex;
+  align-items: baseline;
+  gap: var(--nav-gap);
+}
+
+.site-nav a {
+  font-weight: var(--fw-nav);     /* shared with the footer (decoupled from the list) */
+  font-size: var(--fs-nav);       /* shared with the footer (decoupled from the list) */
+  line-height: 1;
+  color: var(--color-fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* hover effects only on devices that can hover, so a tap on a phone never leaves
+   a stuck hover state (same for the other :hover rules below and in work.css) */
+@media (hover: hover) {
+  .site-nav a:hover {
+    opacity: 0.5;                 /* same hover as .bio-icons a and .site-footer a */
+  }
+}
+
+/* ------------------------------------------------------------------ List -- */
+.content {
+  padding-top: var(--list-top-gap);
+}
+
+.section + .section {
+  margin-top: var(--section-gap);
+}
+
+/* A row spans the full window width; its text is inset by --content-margin.
+   The hover background therefore bleeds edge-to-edge while text stays inset. */
+.row {
+  width: 100%;
+  padding: 0 var(--content-margin);
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+/* Inner grid holds the three visible columns and the inset divider. */
+.row-inner {
+  display: grid;
+  grid-template-columns: var(--col-title) var(--col-year) var(--col-medium);
+  align-items: baseline;
+  column-gap: 0;
+  padding: var(--row-pad-y) 0;
+  border-bottom: var(--line-width) solid var(--color-line); /* inset to margins */
+}
+
+.cell {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* Section title + column headers */
+.row-head {
+  cursor: default;
+}
+.row-head .cell {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-section);
+  text-transform: uppercase;
+}
+
+/* Data rows */
+.row-item .cell {
+  font-weight: var(--fw-light);
+  font-size: var(--fs-row);
+}
+
+/* Only rows with a Link are clickable */
+.row-item.is-link {
+  cursor: pointer;
+}
+.row-item:not(.is-link) {
+  cursor: default;
+}
+
+/* Hover: invert the row (header row excluded). The bar is the .row-inner (divider
+   width, text unmoved) widened by --row-hover-bleed on each side via solid shadows;
+   the -1px shadows cover the divider above, and the row's own divider sits under
+   the black background. */
+@media (hover: hover) {
+  .row-item:hover {
+    color: var(--color-invert-fg);
+  }
+  .row-item:hover .row-inner {
+    background: var(--color-invert-bg);
+    box-shadow:
+      0 -1px 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) 0 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) 0 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) -1px 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) -1px 0 0 var(--color-invert-bg);
+  }
+  .row-item:hover .cell {
+    color: var(--color-invert-fg);
+  }
+}
+
+/* ------------------------------------------------------------- Thumbnail -- */
+/* Shown at natural size (no width/height constraint), follows the cursor. */
+#thumb {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 100;
-  height: 80px;                  /* ← nav height */
-  background: #ffffff;
-  border-bottom: 1px solid #111111;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: end;
-  padding: 0 48px 14px;
-  font-family: 'NeutraText', Arial, sans-serif;
-  color: #111111;
+  display: none;
+  max-width: none;
+  max-height: none;
+  pointer-events: none;
+  z-index: 1000;
+  border: var(--thumb-stroke) solid var(--thumb-stroke-color);
 }
 
-.nav-left {
+/* --------------------------------------------------------- Placeholders -- */
+.placeholder {
   display: flex;
-  align-items: flex-end;
-  gap: 32px;
-  justify-self: start;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-section);
 }
 
-.nav-name {
-  font-family: 'NeutraTextDemi', Arial, sans-serif;
-  font-size: 24px;        /* ← name font size */
-  color: #111111;
-  white-space: nowrap;
-  justify-self: center;
+/* ===========================================================================
+   手机 / 平板适配 — 所有数值集中在这里，电脑端（≥ 1024px）不受影响
+   =========================================================================== */
+
+/* 不支持悬停的设备（手机、平板）：不显示 index 缩略图，点击直接跳转 */
+@media (hover: none) {
+  :root {
+    --row-press-delay: 100ms; /* index：手指点一行后，黑条显示多久再跳转（建议不超过 150ms） */
+  }
+
+  #thumb { display: none !important; }
+
+  /* index 点击反馈：手指按下一行时出现和电脑端悬停一样的黑条（.is-pressed 由 index.js 加上），
+     并去掉浏览器默认的灰色点击高亮 */
+  .row-item {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .row-item.is-pressed {
+    color: var(--color-invert-fg);
+  }
+  .row-item.is-pressed .row-inner {
+    background: var(--color-invert-bg);
+    box-shadow:
+      0 -1px 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) 0 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) 0 0 0 var(--color-invert-bg),
+      calc(-1 * var(--row-hover-bleed)) -1px 0 0 var(--color-invert-bg),
+      var(--row-hover-bleed) -1px 0 0 var(--color-invert-bg);
+  }
+  .row-item.is-pressed .cell {
+    color: var(--color-invert-fg);
+  }
 }
 
-.nav-link {
-  font-size: 16px;        /* ← Artworks / Bio font size */
-  color: #111111;
-  text-decoration: none;
+/* ---- 平板 + 手机（≤ 1023px） ---- */
+@media (max-width: 1023px) {
+  :root {
+    --nav-tap-y: 14px;        /* 导航点击区域上下各扩出的距离（文字 16–18px + 14 × 2 ≥ 44px 高） */
+    --nav-tap-x: 12px;        /* 导航点击区域左右各扩出的距离（手机上 = 导航间距的一半，两个链接刚好相接） */
+  }
+
+  /* 页眉只留左边名字、右边导航：隐藏中间的作品名 */
+  .page-title { display: none; }
+
+  /* 导航：用 padding 扩大点击范围，再用负 margin 抵消，文字位置和外观不变 */
+  .site-nav a {
+    padding: var(--nav-tap-y) var(--nav-tap-x);
+    margin: calc(-1 * var(--nav-tap-y)) calc(-1 * var(--nav-tap-x));
+  }
+
+  /* index：按单词换行，不在单词中间截断 */
+  .cell { overflow-wrap: normal; }
 }
 
-.nav-link:hover {
-  opacity: 0.5;
-}
+/* ---- 手机（≤ 767px） ---- */
+@media (max-width: 767px) {
+  :root {
+    --content-margin: 12px;   /* 左右边距（页眉、列表、作品页模块共用） */
+    --fs-brand: 20px;         /* 左上角 iSABELLE WANG 字号 */
+    --fs-nav: 16px;           /* 导航字号（页脚 Previous / Next 也共用这个变量） */
+    --nav-gap: 24px;          /* Index 和 Bio 之间的距离 */
+    --header-pad-y: 8px;     /* 页眉上下留白，越小页眉越窄 */
+    /* 导航点击区域 --nav-tap-y / --nav-tap-x 在上面的平板 + 手机设置里 */
 
-.nav-right {
-  display: flex;
-  align-items: flex-end;
-  gap: 16px;             /* ← gap between icons */
-  justify-self: end;
-}
+    /* index 只显示两列：作品名占满年份以外的全部宽度，年份按内容宽度
+       （电脑端的 --col-title / --col-year 百分比列宽在手机上不再使用） */
+    --index-year-gap: 16px;   /* 作品名列和年份列之间的距离 */
 
-.nav-icon {
-  display: flex;
-  align-items: flex-end;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
+    /* index 字号：分区标题（ART WORK / YEAR）和每一行，都和右上角导航一样大 */
+    --fs-section: var(--fs-nav);
+    --fs-row: var(--fs-nav);
 
-.nav-icon:hover {
-  opacity: 0.5;
-}
+    /* index：页眉底部 -> ART WORK 这一行的距离（= bio 页页眉到第一行正文的距离 12px） */
+    --index-top-gap: 12px;
+  }
 
-.nav-icon img {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
+  /* index：隐藏 Tags 列（包括表头） */
+  .row-inner { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--index-year-gap); }
+  .cell-tags { display: none; }
 
-/* ── PAGER (work / project pages) ── */
-.nav-pager {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;             /* ← gap between << Previous and Next >> */
-}
+  /* index：年份列（表头 YEAR 和每一行）右对齐，贴着右边距 */
+  .cell-year { text-align: right; }
 
-.nav-pager a {
-  font-size: 16px;
-  color: #111111;
-  text-decoration: none;
-}
-
-.nav-pager a:hover {
-  opacity: 0.5;
-}
-
-.nav-divider {
-  width: 1px;
-  height: 16px;
-  background: #111111;
-  align-self: flex-end;
-  margin: 0 16px;        /* ← gap on each side of the divider */
-}
-
-/* ── PROJECT LAYOUT ── */
-.project {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 48px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.project-left {
-  position: sticky;
-  top: 80px;            /* sticks just under the nav */
-  align-self: start;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-top: 38px;   /* ← left column top gap — edit here */
-}
-
-.project-title {
-  font-family: 'NeutraTextDemi', Arial, sans-serif;
-  font-size: 32px;
-}
-
-.project-desc {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.project-meta {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.project-right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-top: 16px;   /* ← right column top gap — edit here */
-}
-
-.project-right img {
-  width: 100%;
-  display: block;
-}
-
-.project-caption {
-  font-family: 'NeutraTextLightItalic', Arial, sans-serif;
-  font-size: 16px;
-  text-align: right;
-}
-
-.video-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.video-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
-/* ── CONTENT SECTIONS (right column) ── */
-.content-text {
-  font-family: 'NeutraTextLight', Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  /* index 顶部间距：原来是 --list-top-gap 20px + 表头行上内边距 --row-pad-y 6px = 26px；
+     改为由 --index-top-gap 控制（减去行本身的上内边距，所以页眉 -> 表头行刚好等于这个值） */
+  .content { padding-top: max(0px, calc(var(--index-top-gap) - var(--row-pad-y))); }
 }

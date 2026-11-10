@@ -3,36 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bio — Isabelle WANG ZIYU</title>
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Bio | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/bio.html" />
+  <meta property="og:title" content="Bio | Isabelle Wang" />
+  <meta property="og:description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body { padding-top: 64px; }  /* ← top gap below nav */
-
-    .bio-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding-top: 48px;
-    }
-  </style>
+  <link rel="stylesheet" href="work.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Artworks</a>
-      <a href="bio.html" class="nav-link">Bio</a>
-    </div>
-    <span class="nav-name">Isabelle WANG ZIYU</span>
-    <div class="nav-right">
-      <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" style="width:17px;height:17px;"></a>
-      <a href="mailto:isabelle.wangzy@gmail.com" class="nav-icon"><img src="assets/icons/email-svgrepo-com.svg" alt="Email"></a>
-    </div>
-  </nav>
-  <main class="bio-content">
-    <h2 style="font-family:'NeutraTextDemi',Arial,sans-serif;font-size:20px;text-align:left;padding-top:16px;padding-bottom:16px;">About</h2>
-    <p style="font-family:'NeutraTextLight',Arial,sans-serif;font-size:18px;line-height:1.6;">Ziyu (Isabelle) Wang is a Chinese computational artist based in London, currently completing an MFA in Computational Arts at Goldsmiths, University of London. Working across interactive installations, machine vision, wearable devices, and creative coding, she seeks to stretch the boundaries of human perception and open new channels of multi-sensory experience.<br><br>Central to her work is a deep curiosity about the nature of reality: how humans construct and inhabit it, and how machines perceive it differently. This tension between organic and computational sensing runs through everything she makes.<br><br>Isabelle believes that no mediation, however precise, however poetic, can substitute for the rawness of being present. Her work asks only that something real passes between people.</p>
-    <h2 style="font-family:'NeutraTextDemi',Arial,sans-serif;font-size:20px;text-align:left;padding-top:36px;padding-bottom:16px;">Selected Experience</h2>
-    <p style="font-family:'NeutraTextLight',Arial,sans-serif;font-size:18px;line-height:1.6;">Nike Greater China, Consumer Direct Marketing Creative Intern, 2022–2023<br>Oxo Gallery London, Exhibition Manager, 2025<br>LIMAGE Shanghai, Design and Performance Team, 2024<br>J Design Lab Shanghai, Designer Assistant, 2022</p>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- three-column grid: text in columns 1-2, icons in column 3 -->
+    <section class="module-grid bio-grid">
+
+      <div class="span-2">
+        <div class="split-text">
+          <p class="project-desc">Isabelle Wang is a creative technologist and computational artist based in London and Shanghai. She recently graduated with an MFA in Computational Arts from Goldsmiths, University of London.</p>
+          <p class="project-desc">Working across interactive installations, machine vision, creative coding, and immersive environments, she explores how technology can be used creatively to design engaging and meaningful experiences for audiences.</p>
+          <p class="project-desc">With a background in visual communication and experience in the creative industry, she brings a strong visual sensibility and an understanding of brand storytelling and commercial creative strategies.</p>
+          <p class="project-desc">She remains curious about how emerging technologies can reshape the way people perceive the physical world. She believes technology is most meaningful when it creates something beyond itself: a moment of genuine human experience and connection.</p>
+        </div>
+
+        <h2 class="work-heading bio-heading">SELECTED EXPERIENCE</h2>
+        <ul class="bio-list">
+          <li class="work-caption">Nike Greater China, Consumer Direct Marketing Creative Intern, 2022–2023</li>
+          <li class="work-caption">Oxo Gallery London, Exhibition Manager, 2025 &amp; 2026</li>
+          <li class="work-caption">LIMAGE Shanghai, Creative Technologist, 2024</li>
+          <li class="work-caption">J Design Lab Shanghai, Designer Assistant, 2022</li>
+        </ul>
+      </div>
+
+      <!-- icons: column 3, right-aligned, stay in place while the text scrolls -->
+      <nav class="bio-icons" aria-label="Contact">
+        <a href="https://www.instagram.com/ziyuw.ork/" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram" />
+        </a>
+        <a href="mailto:isabelle.wangzy@gmail.com" aria-label="Email">
+          <img src="assets/icons/email-svgrepo-com.svg" alt="Email" />
+        </a>
+        <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" />
+        </a>
+      </nav>
+
+    </section>
+
   </main>
 </body>
 </html>

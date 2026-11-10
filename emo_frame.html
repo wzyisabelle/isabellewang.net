@@ -3,40 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emo Frame — Isabelle WANG ZIYU</title>
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Emo Frame | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="Who or what gets to define the subtleties of how we feel?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/emo_frame.html" />
+  <meta property="og:title" content="Emo Frame | Isabelle Wang" />
+  <meta property="og:description" content="Who or what gets to define the subtleties of how we feel?" />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Artworks</a>
-      <a href="bio.html" class="nav-link">Bio</a>
-    </div>
-    <span class="nav-name">Isabelle WANG ZIYU</span>
-    <div class="nav-right">
-      <div class="nav-pager">
-        <a href="shawshank.html">&lt;&lt; Previous</a>
-        <a href="electric_touch.html">Next &gt;&gt;</a>
-      </div>
-      <div class="nav-divider"></div>
-      <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" style="width:17px;height:17px;"></a>
-      <a href="mailto:isabelle.wangzy@gmail.com" class="nav-icon"><img src="assets/icons/email-svgrepo-com.svg" alt="Email"></a>
-    </div>
-  </nav>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <span class="page-title">Emo Frame</span>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
 
-  <main class="project">
-    <div class="project-left">
-      <h1 class="project-title">Emo Frame</h1>
-      <p class="project-desc">Who or what gets to define the subtleties of how we feel?<br><br>Emo Frame is a wearable device that materializes the digital gaze of machine vision. A transparent acrylic frame, cut in the shape of the bounding boxes used by facial recognition systems, sits in front of the wearer's face. When activated, a webcam feeds into a DeepFace model that classifies the wearer's expression in real time; an Arduino-driven LCD screen mounted on the frame displays the identified "emotion" and its confidence score for others to read.<br><br>Between two people, a machine's reading now stands as a third presence, at once a bridge and a distortion.</p>
-      <p class="project-meta">2025. Wearable device. Arduino, DeepFace (Python), OpenCV, acrylic frame, 3D-printed components, LCD display, webcam.</p>
-    </div>
-    <div class="project-right">
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/a2v2JUfzUqo" allowfullscreen></iframe>
+  <main class="work">
+
+    <!-- 1. preview hero — full window width, natural height (.hero-bleed), autoplay muted loop, no controls -->
+    <section class="module-full hero-bleed">
+      <video src="assets/images/projects/Emo_Frame/preview-web.mp4" autoplay muted loop playsinline></video>
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <h1 class="mobile-work-title">Emo Frame</h1>   <!-- 作品名：只在手机上显示 -->
+        <p class="project-desc">Who or what gets to define the subtleties of how we feel?<br><br>Emo Frame is a wearable device that materializes the digital gaze of machine vision. A transparent acrylic frame, cut in the shape of the bounding boxes used by facial recognition systems, sits in front of the wearer's face. When activated, a webcam feeds into a DeepFace model that classifies the wearer's expression in real time; an Arduino-driven LCD screen mounted on the frame displays the identified "emotion" and its confidence score for others to read.<br><br>Between two people, a machine's reading now stands as a third presence, at once a bridge and a distortion.</p>
       </div>
-      <img src="assets/images/projects/Emo_Frame/emo_1.png" alt="">
-    </div>
+      <div class="split-text">
+        <p class="project-meta">2025. Wearable device. Arduino, DeepFace (Python), OpenCV, acrylic frame, 3D-printed components, LCD display, webcam.</p>
+      </div>
+    </section>
+
+    <!-- 3. 1.png (col 1) + Vimeo (cols 2-3, 16:9), gap above = one unit distance -->
+    <section class="module-grid gap-content">
+      <img src="assets/images/projects/Emo_Frame/1.png" alt="">
+      <div class="video-wrap span-2 start-2">
+        <iframe src="https://player.vimeo.com/video/1239633846" allowfullscreen></iframe>
+      </div>
+    </section>
+
   </main>
+
+  <footer class="site-footer">
+    <a href="shawshank.html">&lt; Previous</a>
+    <a href="melodic_echo_odyssey.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
 </body>
 </html>

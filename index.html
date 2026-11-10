@@ -3,162 +3,280 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isabelle WANG ZIYU</title>
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/" />
+  <meta property="og:title" content="Isabelle Wang" />
+  <meta property="og:description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body { padding-top: 96px; }  /* 80px nav + 16px = same as grid gap ← edit here */
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* ← number of columns */
-      gap: 16px;                              /* ← gap between squares */
-      max-width: 1400px;                      /* ← overall width (larger = bigger squares) */
-      margin: 0 auto;
-    }
-
-    .work {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      background: #d8d8d8;
-      display: block;
-      text-decoration: none;
-      overflow: hidden;
-    }
-
-    .work-cover {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 50%; /* adjust x% y% to reframe */
-    }
-
-    .work-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      text-align: center;
-      padding: 16px;
-    }
-
-    .work:hover .work-overlay {
-      opacity: 1;
-    }
-
-    .work-overlay .title {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-
-    .work-overlay .meta {
-      font-size: 13px;
-    }
-
-    @media (max-width: 700px) {
-      body { padding: 32px; }
-      .grid { grid-template-columns: 1fr; gap: 16px; }
-    }
-  </style>
+  <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="#" class="nav-link">Artworks</a>
-      <a href="bio.html" class="nav-link">Bio</a>
-    </div>
-    <span class="nav-name">Isabelle WANG ZIYU</span>
-    <div class="nav-right">
-      <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" style="width:17px;height:17px;"></a>
-      <a href="mailto:isabelle.wangzy@gmail.com" class="nav-icon"><img src="assets/icons/email-svgrepo-com.svg" alt="Email"></a>
-    </div>
-  </nav>
-  <main class="grid">
-    <a href="aloe.html" class="work">
-      <img class="work-cover" src="assets/images/covers/aloe.jpg" alt="" />
-      <div class="work-overlay">
-        <div class="title">Alternative Aloe</div>
-        <div class="meta">2026</div>
-      </div>
-    </a>
-    <a href="through_the_stone.html" class="work">
-      <img class="work-cover" src="assets/images/covers/through_the_stone.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Through the Stone</div>
-        <div class="meta">2025</div>
-      </div>
-    </a>
-    <a href="shawshank.html" class="work">
-      <img class="work-cover" src="assets/images/covers/Shawshank_in_keywords.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Shawshank in Keywords</div>
-        <div class="meta">2025</div>
-      </div>
-    </a>
-    <a href="emo_frame.html" class="work">
-      <img class="work-cover" src="assets/images/covers/emo_frame.jpg" alt="" />
-      <div class="work-overlay">
-        <div class="title">Emo Frame</div>
-        <div class="meta">2025</div>
-      </div>
-    </a>
-    <a href="electric_touch.html" class="work">
-      <img class="work-cover" src="assets/images/covers/electric_touch.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Electric Touch</div>
-        <div class="meta">2025</div>
-      </div>
-    </a>
-    <a href="pieces_of_time.html" class="work">
-      <img class="work-cover" src="assets/images/covers/Pieces_of_Time.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Pieces of Time</div>
-        <div class="meta">2024</div>
-      </div>
-    </a>
-    <a href="melodic_echo_odyssey.html" class="work">
-      <img class="work-cover" src="assets/images/covers/melodic_echo_odyssey.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Melodic Echo Odyssey</div>
-        <div class="meta">2024</div>
-      </div>
-    </a>
-    <a href="vernal_soiree.html" class="work">
-      <img class="work-cover" src="assets/images/covers/vernal_soiree_1.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">Vernal Soirée</div>
-        <div class="meta">2023</div>
-      </div>
-    </a>
-    <a href="father_daughter.html" class="work">
-      <img class="work-cover" src="assets/images/covers/father-daughter_companion.jpg" alt="" />
-      <div class="work-overlay">
-        <div class="title">Father-Daughter Companion</div>
-        <div class="meta">2023</div>
-      </div>
-    </a>
-    <a href="foodies_home.html" class="work">
-      <img class="work-cover" src="assets/images/covers/foodie.png" alt="" />
-      <div class="work-overlay">
-        <div class="title">FOODIES' HOME</div>
-        <div class="meta">2023</div>
-      </div>
-    </a>
-    <a href="fish_steak.html" class="work">
-      <img class="work-cover" src="assets/images/covers/fish_steak.jpg" alt="" />
-      <div class="work-overlay">
-        <div class="title">Fish Steak</div>
-        <div class="meta">2020</div>
-      </div>
-    </a>
-  </main>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <!-- Slides are generated from the SLIDES list in the script below -->
+  <main class="landing" id="slides"></main>
+
+  <script>
+    /* ======================================================================
+       首页轮播配置 SLIDES — 只需修改这里
+       ----------------------------------------------------------------------
+       每一项 = 一屏，按从上到下的顺序排列：
+         file : 文件名，放在 assets/images/landing/ 里（大小写必须与实际文件一致）
+         type : "image" 图片 或 "video" 视频（视频自动静音循环、无控制条）
+         link : 点击这一屏跳转的页面（相对网站根目录）
+         pos  : 可选，裁切重点，即 CSS object-position。不写 = "center" 居中
+                例如 "left center"、"right top"、"50% 30%"
+         path : 可选，引用 landing 文件夹以外的文件时使用，写完整路径（相对网站根目录，
+                以 assets/ 开头），例如作品页已有的视频：
+                  path: "assets/images/projects/iwd/iwd2-web.mp4"
+                写了 path 就不需要 file；不写 path 时照常用 file（默认在 landing 文件夹）
+       ---- 竖版素材可选字段：屏幕宽度 ≤ 767px，或者竖屏（例如平板竖着拿）时使用；
+            平板横屏、电脑横屏仍用电脑版。不写 = 所有屏幕用同一个文件 ----
+         mobile    : 可选，手机 / 竖屏时改用的文件。写法和 path / file 一样：
+                       含 "/" 的当完整路径（相对网站根目录，以 assets/ 开头），
+                       只写文件名的从 landing 文件夹里找
+                     例如 mobile: "assets/images/projects/aloe/4.png"
+                     手机 / 竖屏时只下载这个文件，不会再下载电脑版；
+                     手机版和电脑版的类型可以不同（电脑版视频、手机版图片也行）：
+                     按扩展名自动判断，.mp4 / .webm / .mov / .m4v = 视频，其他 = 图片；
+                     扩展名判断不了时，用 mobileType: "image" 或 "video" 写明
+         mobilePos : 可选，手机 / 竖屏版的裁切位置（object-position），不写 = "center" 居中，
+                     不继承电脑版的 pos。例如 "50% 30%"、"center top"
+         旋转屏幕（横竖屏切换）或窗口宽度跨过 767px 时会自动换成对应版本
+       更换文件或链接：改对应项的 file（或 path）/ link
+       调整顺序：上下移动整行（第一行 = 打开首页时显示的第一屏）
+       增加一屏：复制一行并修改；删除一屏：删掉那一行
+       无限循环会根据这个列表自动生成，增删、调整顺序都不需要改下面的代码
+       ====================================================================== */
+    var SLIDES = [
+           { path: "assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html",
+        mobile: "assets/images/projects/through_the_stone_2/9.png", mobilePos: "50% 56%" },
+      { path: "assets/images/projects/Melodic_Echo_Odyssey/preview.png", type: "image", link: "melodic_echo_odyssey.html" },
+       { path: "assets/images/projects/iwd/iwd2-web.mp4",                 type: "video", link: "nike_iwd.html",
+      mobile: "assets/images/projects/iwd/iwd2-web.mp4", mobilePos: "57% 50%" },
+      { file: "vernal_soiree.mp4",                                           type: "video", link: "vernal_soiree.html",
+        mobile: "vs-vertical-web.mp4", mobilePos: "50% 50%" },
+      { path: "assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html",
+                mobile: "assets/images/projects/aloe/4.png", mobilePos: "60% center" }
+    ];
+
+    // 素材文件夹 media folder (relative to the site root)
+    var MEDIA_DIR = "assets/images/landing/";
+
+    /* ---- endless loop ------------------------------------------------------
+       DOM order: [copy of last] + the real slides + [copy of first]. The copies
+       never get media of their own: each item's single <img>/<video> is MOVED
+       into whichever of its slides (real or copy) is nearest the scroll
+       position, so nothing downloads twice, a video keeps playing across the
+       jump, and only the clicked slide carries the element that gets a
+       view-transition-name. When scrolling settles on a copy, scrollTop is set
+       (instantly) to the matching real slide, which looks identical. */
+    (function () {
+      "use strict";
+
+      var main = document.getElementById("slides");
+      var N = SLIDES.length;
+      if (!N) return;
+      var videos = [];
+      var items = [];            // per SLIDES entry: { content, slides: [real, copies...] }
+      var all = [];              // every slide element in DOM order
+
+      function makeSlide(item, isCopy) {
+        var slide = document.createElement("a");
+        slide.className = "slide";
+        slide.href = item.link;
+        slide.setAttribute("aria-label", item.link.replace(/\.html$/, "").replace(/_/g, " "));
+        if (item.pos) slide.style.setProperty("--pos", item.pos);
+        if (isCopy) {            // copies are for the eye only: hidden from keyboard and screen readers
+          slide.setAttribute("aria-hidden", "true");
+          slide.tabIndex = -1;
+          slide.dataset.copy = "";
+        }
+        return slide;
+      }
+
+      // phone (≤767px, same breakpoint as the CSS) or any portrait screen uses item.mobile when given
+      var PHONE = window.matchMedia("(max-width: 767px), (orientation: portrait)");
+      var VIDEO_EXT = /\.(mp4|webm|mov|m4v)(\?|#|$)/i;
+      var io = null;             // video observer, created below; null until then
+
+      // The <img>/<video> for an item, desktop or phone version.
+      function makeMedia(item, i, entry, phone) {
+        var src = item.path || (MEDIA_DIR + item.file);    // path (full, relative to the site root) wins
+        var type = item.type;
+        if (phone) {
+          src = item.mobile.indexOf("/") !== -1 ? item.mobile : MEDIA_DIR + item.mobile;
+          type = item.mobileType || (VIDEO_EXT.test(item.mobile) ? "video" : "image");
+        }
+        var media;
+        if (type === "video") {
+          media = document.createElement("video");
+          media.muted = true;              // property too, so autoplay rules allow play()
+          media.setAttribute("muted", "");
+          media.loop = true;
+          media.playsInline = true;
+          media.setAttribute("playsinline", "");
+          media.preload = "metadata";      // only the header is fetched until the slide is shown
+          videos.push(media);
+          if (io) io.observe(media);
+        } else {
+          media = document.createElement("img");
+          media.alt = "";
+          // the first and last slides sit next to the start screen (the last via
+          // its copy above), so load them normally; the rest lazily
+          if (i > 0 && i < N - 1) media.loading = "lazy";
+        }
+        // phone version crops around mobilePos (default center), not the desktop pos
+        if (phone) media.style.setProperty("--pos", item.mobilePos || "center");
+        // Missing or failed file: show the expected path instead of the media.
+        media.addEventListener("error", function () {
+          if (entry.content !== media) return;            // already swapped for the other version
+          var note = document.createElement("span");
+          note.className = "slide-missing";
+          note.textContent = src.replace(/^\.\.\//, "");   // e.g. assets/images/landing/vernal_soiree.mp4
+          media.replaceWith(note);
+          entry.content = note;
+        });
+        media.src = src;
+        return media;
+      }
+
+      SLIDES.forEach(function (item, i) {
+        var slide = makeSlide(item, false);
+        var entry = { item: item, i: i, slides: [slide], phone: !!item.mobile && PHONE.matches };
+        entry.content = makeMedia(item, i, entry, entry.phone);
+        slide.appendChild(entry.content);
+        items.push(entry);
+      });
+
+      // Crossing 767px or portrait/landscape (rotation, window resize): swap in the other version,
+      // in whichever slide (real or copy) currently holds it.
+      function swapVersions() {
+        items.forEach(function (e) {
+          var phone = !!e.item.mobile && PHONE.matches;
+          if (phone === e.phone) return;
+          e.phone = phone;
+          var old = e.content;
+          if (old.tagName === "VIDEO") {
+            old.pause();
+            if (io) io.unobserve(old);
+            videos.splice(videos.indexOf(old), 1);
+          }
+          e.content = makeMedia(e.item, e.i, e, phone);
+          old.replaceWith(e.content);
+          if (old.tagName === "IMG") old.removeAttribute("src");                       // stop the old download
+          if (old.tagName === "VIDEO") { old.removeAttribute("src"); old.load(); }
+        });
+      }
+      if (PHONE.addEventListener) PHONE.addEventListener("change", swapVersions);
+      else if (PHONE.addListener) PHONE.addListener(swapVersions);   // Safari < 14
+
+      // copies: last item above the first slide, first item below the last
+      var top = makeSlide(SLIDES[N - 1], true), bottom = makeSlide(SLIDES[0], true);
+      items[N - 1].slides.push(top);
+      items[0].slides.push(bottom);
+      all = [top].concat(items.map(function (e) { return e.slides[0]; }), [bottom]);
+      all.forEach(function (s) { main.appendChild(s); });
+
+      function slideH() { return all[1].offsetHeight || main.clientHeight || 1; }
+      function indexOf(slide) { return all.indexOf(slide); }
+
+      // Put each item's media into its slide nearest the current scroll position.
+      function place() {
+        var at = main.scrollTop / slideH();
+        items.forEach(function (e) {
+          var best = e.slides[0], d = Infinity;
+          e.slides.forEach(function (s) {
+            var dist = Math.abs(indexOf(s) - at);
+            if (dist < d - 0.01) { d = dist; best = s; }   // ties keep the real slide
+          });
+          if (e.content.parentNode !== best) best.appendChild(e.content);
+        });
+      }
+
+      // Settled on a copy -> jump (no animation) to the real slide it mirrors.
+      function settle() {
+        var i = Math.round(main.scrollTop / slideH());
+        var to = i === 0 ? N : (i === N + 1 ? 1 : -1);
+        if (to < 0) return;
+        main.scrollTop = all[to].offsetTop;
+        place();                                   // same task: no frame shows the in-between state
+      }
+
+      var timer = 0;
+      main.addEventListener("scroll", function () {
+        place();
+        if (!("onscrollend" in window)) {          // no scrollend (Safari 18): wait for scrolling to stop
+          clearTimeout(timer);
+          timer = setTimeout(settle, 150);
+        }
+      }, { passive: true });
+      main.addEventListener("scrollend", settle);
+      window.addEventListener("resize", place);
+      // restored from the back/forward cache while resting on a copy: move to the real slide
+      window.addEventListener("pageshow", function (e) { if (e.persisted) settle(); });
+
+      // Back from a work page: return to the slide that was clicked (saved in
+      // this history entry); otherwise start on the first slide.
+      var start = 1;
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      var back = (window.navigation && navigation.activation)
+        ? navigation.activation.navigationType === "traverse"
+        : (nav && nav.type === "back_forward");
+      var saved = history.state && history.state.landingSlide;
+      if (back && saved >= 1 && saved <= N) start = saved;
+      main.scrollTop = all[start].offsetTop;
+      place();
+
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest("a.slide");
+        if (!a) return;
+        var i = indexOf(a);
+        var real = i === 0 ? N : (i === N + 1 ? 1 : i);       // a copy maps to its real slide
+        try { history.replaceState(Object.assign({}, history.state, { landingSlide: real }), ""); } catch (err) {}
+      }, true);
+
+      // Play a video only while its slide is on screen; pause it when it leaves.
+      // (The observer follows the element, so it also works while it sits in a copy.)
+      if ("IntersectionObserver" in window) {
+        io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) {
+              var p = v.play();
+              if (p && p.catch) p.catch(function () {}); // missing file / autoplay refused: stay quiet
+            } else {
+              v.pause();
+            }
+          });
+        }, { root: main, threshold: 0.5 });
+        videos.forEach(function (v) { io.observe(v); });
+      }
+    })();
+  </script>
+  <!-- seamless slide -> work page transition (experiment; HERO_PAGES = Nike only) -->
+  <script src="landing-transition.js"></script>
+  <!-- slide click -> work page auto-scrolls to its text (experiment) -->
+  <script src="landing-entry.js"></script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Nike CNY 2023 | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="A series of short-form videos for Nike&#x27;s 2023 Chinese New Year campaign, combining festive traditions, New Year resolutions and styling tips to engage…" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/nike_cny.html" />
+  <meta property="og:title" content="Nike CNY 2023 | Isabelle Wang" />
+  <meta property="og:description" content="A series of short-form videos for Nike&#x27;s 2023 Chinese New Year campaign, combining festive traditions, New Year resolutions and styling tips to engage…" />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <span class="page-title">Nike CNY 2023</span>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="work">
+
+    <!-- 1. cny hero — full window width, natural height (.hero-bleed), autoplay muted loop, no controls -->
+    <section class="module-full hero-bleed">
+      <video src="assets/images/projects/cny/cny-web.mp4" autoplay muted loop playsinline></video>
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <h1 class="mobile-work-title">Nike CNY 2023</h1>   <!-- 作品名：只在手机上显示 -->
+        <p class="project-desc">A series of short-form videos for Nike's 2023 Chinese New Year campaign, combining festive traditions, New Year resolutions and styling tips to engage audiences and highlight seasonal products.</p>
+        <p class="project-desc">I worked on the campaign from initial concept to final cut, covering art direction, shooting and post-production.</p>
+        <p class="project-desc">Production with BIE.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2023. Short-form video series, art direction, post-production.</p>
+      </div>
+    </section>
+
+    <!-- 3. three vertical videos (controls, sound on, not autoplay), gap above = one unit distance -->
+    <section class="module-grid gap-content">
+      <video controls playsinline preload="metadata" poster="assets/images/projects/cny/leaphigh-crf23-poster.jpg" src="assets/images/projects/cny/leaphigh-crf23.mp4"></video>
+      <video controls playsinline preload="metadata" poster="assets/images/projects/cny/running-crf23-poster.jpg" src="assets/images/projects/cny/running-crf23.mp4"></video>
+      <video controls playsinline preload="metadata" poster="assets/images/projects/cny/styling-web-poster.jpg" src="assets/images/projects/cny/styling-web.mp4"></video>
+    </section>
+
+    <!-- 4. BEHIND THE SCENE — 1:1; left half: fu + site equal height, right half: wrap -->
+    <section class="module-grid cols-2 module-behind">
+      <h2 class="work-heading span-2">BEHIND THE SCENE</h2>
+      <div class="equal-row">
+        <figure class="behind-figure" style="--ar: 0.75;">
+          <img src="assets/images/projects/cny/fu.jpg" alt="">
+          <figcaption class="work-caption">Festive decorations on set.</figcaption>
+        </figure>
+        <figure class="behind-figure" style="--ar: 0.7495;">
+          <img src="assets/images/projects/cny/site.jpg" alt="">
+          <figcaption class="work-caption">Filmed during China's pandemic lockdown, when shooting on the streets was a real challenge.</figcaption>
+        </figure>
+      </div>
+      <figure class="behind-figure">
+        <img src="assets/images/projects/cny/wrap.jpg" alt="">
+        <figcaption class="work-caption">It's a WRAP!</figcaption>
+      </figure>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a href="nike_iwd.html">&lt; Previous</a>
+    <a href="nike_tmall_cathead.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+</body>
+</html>

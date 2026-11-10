@@ -3,46 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vernal Soirée — Isabelle WANG ZIYU</title>
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <title>Vernal Soirée | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="Vernal Soirée is a multi-sensory experience that reimagines the literati wine-drinking gatherings of China&#x27;s Song Dynasty as a game for contemporary audiences." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/vernal_soiree.html" />
+  <meta property="og:title" content="Vernal Soirée | Isabelle Wang" />
+  <meta property="og:description" content="Vernal Soirée is a multi-sensory experience that reimagines the literati wine-drinking gatherings of China&#x27;s Song Dynasty as a game for contemporary audiences." />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="work.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Artworks</a>
-      <a href="bio.html" class="nav-link">Bio</a>
-    </div>
-    <span class="nav-name">Isabelle WANG ZIYU</span>
-    <div class="nav-right">
-      <div class="nav-pager">
-        <a href="melodic_echo_odyssey.html">&lt;&lt; Previous</a>
-        <a href="father_daughter.html">Next &gt;&gt;</a>
-      </div>
-      <div class="nav-divider"></div>
-      <a href="https://www.instagram.com/ziyuw.ork/" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/in/isabelle-wang-ziyu-516223302" class="nav-icon" target="_blank" rel="noopener"><img src="assets/icons/linkedin-logo-svgrepo-com.svg" alt="LinkedIn" style="width:17px;height:17px;"></a>
-      <a href="mailto:isabelle.wangzy@gmail.com" class="nav-icon"><img src="assets/icons/email-svgrepo-com.svg" alt="Email"></a>
-    </div>
-  </nav>
+  <header class="site-header">
+    <a class="brand" href="./">iSABELLE WANG</a>
+    <span class="page-title">Vernal Soirée</span>
+    <nav class="site-nav">
+      <a href="works.html">Index</a>
+      <a href="bio.html">Bio</a>
+    </nav>
+  </header>
 
-  <main class="project">
-    <div class="project-left">
-      <h1 class="project-title">Vernal Soirée</h1>
-      <p class="project-desc">Vernal Soirée is a multi-sensory experience that reimagines the literati wine-drinking gatherings of China's Song Dynasty as a game for contemporary audiences. A set of hand-drawn cards structures a sequence of ritualized interactions, while digital projections and 3D-modeled scenography extend the tabletop into an immersive spatial experience. Players are invited into a room where the choreography of drinking, reciting, and playing carries the sociality of a thousand-year-old tradition into the present.</p>
-      <p class="project-meta">2023. Immersive experience. Card game design, ritual design, digital projection, 3D scenography.</p>
-    </div>
-    <div class="project-right">
-      <div class="video-wrap">
+  <main class="work">
+
+    <!-- 1. Vimeo — full window width (16:9, .hero-bleed) -->
+        <section class="module-full hero-bleed">
+      <div class="video-wrap video-wrap-dark">
         <iframe src="https://player.vimeo.com/video/908163232" allowfullscreen></iframe>
       </div>
-      <img src="assets/images/projects/vernal_soiree/1.png" alt="">
-      <img src="assets/images/projects/vernal_soiree/2.png" alt="">
-      <img src="assets/images/projects/vernal_soiree/3.png" alt="">
-      <img src="assets/images/projects/vernal_soiree/4.png" alt="">
-      <img src="assets/images/projects/vernal_soiree/5.jpg" alt="">
-      <img src="assets/images/projects/vernal_soiree/6.png" alt="">
+    </section>
+
+    <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
+    <section class="module-textrow">
+      <div class="split-text">
+        <h1 class="mobile-work-title">Vernal Soirée</h1>   <!-- 作品名：只在手机上显示 -->
+        <p class="project-desc">Vernal Soirée is a multi-sensory experience that reimagines the literati wine-drinking gatherings of China's Song Dynasty as a game for contemporary audiences.<br><br>A set of hand-drawn cards structures a sequence of ritualized interactions, while digital projections and 3D-modeled scenography extend the tabletop into an immersive spatial experience. Within this space, players engage in a choreography of drinking, reciting, and playing that brings the social rituals of a thousand-year-old tradition into the present.</p>
+      </div>
+      <div class="split-text">
+        <p class="project-meta">2023. Immersive experience. Card game design, ritual design, digital projection, 3D scenography.</p>
+      </div>
+    </section>
+
+    <!-- 3. 7.png — full content width (gap above = one unit distance) -->
+    <section class="module-full gap-content">
       <img src="assets/images/projects/vernal_soiree/7.png" alt="">
-    </div>
+    </section>
+
+    <!-- 4. 1.png — columns 1-2 -->
+    <section class="module-grid">
+      <img class="span-2" src="assets/images/projects/vernal_soiree/1.png" alt="">
+    </section>
+
+    <!-- 5. 4.png — columns 2-3 -->
+    <section class="module-grid">
+      <img class="span-2 start-2" src="assets/images/projects/vernal_soiree/4.png" alt="">
+    </section>
+
+    <!-- 6. 2.png + 5.png — two equal columns (1:1), full content width -->
+    <section class="module-grid cols-2">
+      <img src="assets/images/projects/vernal_soiree/2.png" alt="">
+      <img src="assets/images/projects/vernal_soiree/5.png" alt="">
+    </section>
+
+    <!-- 7. 6.png — columns 2-3 -->
+    <section class="module-grid">
+      <img class="span-2 start-2" src="assets/images/projects/vernal_soiree/6.png" alt="">
+    </section>
+
   </main>
+
+  <footer class="site-footer">
+    <a href="melodic_echo_odyssey.html">&lt; Previous</a>
+    <a href="father_daughter.html">Next &gt;</a>
+  </footer>
+
+  <script src="footer.js"></script>
+  <script src="landing-entry.js"></script>
 </body>
 </html>
