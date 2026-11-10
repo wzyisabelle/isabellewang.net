@@ -7,7 +7,7 @@
    Back/Forward, index, Previous/Next and direct visits find no flag (or a
    stale / mismatched one) and do nothing. No View Transitions needed.
 
-   Include on landing.html and on every page listed in ENTRY_PAGES:
+   Include on the landing page (index.html) and on every page listed in ENTRY_PAGES:
        <script src="landing-entry.js"></script>   (end of <body>)
    =========================================================================== */
 
@@ -47,6 +47,8 @@
     try { return new URL(url, location.href).pathname.split("/").pop(); }
     catch (e) { return ""; }
   }
+  // the landing page is index.html, usually reached as the bare site root ("/")
+  function isLanding(file) { return file === "" || file === "index.html"; }
   function store(fn) {          // sessionStorage can throw (private mode, blocked storage)
     try { return fn(window.sessionStorage); } catch (e) { return null; }
   }
@@ -83,7 +85,7 @@
 
   var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
   var fresh = flag && flag.page === page && Date.now() - flag.t < MAX_AGE;
-  var fromLanding = fileOf(document.referrer) === "landing.html";
+  var fromLanding = !!document.referrer && isLanding(fileOf(document.referrer));
   var normalLoad = !nav || nav.type === "navigate";       // not reload / back_forward
   if (!fresh || !fromLanding || !normalLoad) return;
   if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;

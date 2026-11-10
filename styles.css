@@ -6,40 +6,40 @@
 /* ---- Fonts: self-hosted Rubik (woff2), no Google Fonts ---- */
 @font-face {
   font-family: "Rubik";
-  src: url("../assets/Rubik/Rubik-Light.woff2") format("woff2"),
-       url("../assets/Rubik/Rubik-Light.ttf") format("truetype");
+  src: url("assets/Rubik/Rubik-Light.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Rubik";
-  src: url("../assets/Rubik/Rubik-Regular.woff2") format("woff2"),
-       url("../assets/Rubik/Rubik-Regular.ttf") format("truetype");
+  src: url("assets/Rubik/Rubik-Regular.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Rubik";
-  src: url("../assets/Rubik/Rubik-Medium.woff2") format("woff2"),
-       url("../assets/Rubik/Rubik-Medium.ttf") format("truetype");
+  src: url("assets/Rubik/Rubik-Medium.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Rubik";
-  src: url("../assets/Rubik/Rubik-Bold.woff2") format("woff2"),
-       url("../assets/Rubik/Rubik-Bold.ttf") format("truetype");
+  src: url("assets/Rubik/Rubik-Bold.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Rubik";
-  src: url("../assets/Rubik/Rubik-LightItalic.woff2") format("woff2"),
-       url("../assets/Rubik/Rubik-LightItalic.ttf") format("truetype");
+  src: url("assets/Rubik/Rubik-LightItalic.woff2") format("woff2"),
+       url("assets/Rubik/Rubik-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;

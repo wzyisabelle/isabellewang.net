@@ -8,7 +8,7 @@
   "use strict";
 
   var CONTENT_FILE = "index-content.md";
-  var THUMB_BASE = "../assets/thumbnails/";
+  var THUMB_BASE = "assets/thumbnails/";
 
   var root = getComputedStyle(document.documentElement);
   // Fall back to 20 only when the value can't be read (NaN), so an explicit 0 is honored.

@@ -3,22 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <title>Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/" />
+  <meta property="og:title" content="Isabelle Wang" />
+  <meta property="og:description" content="Isabelle Wang is a creative technologist and computational artist based in London." />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
-  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <a class="brand" href="./">iSABELLE WANG</a>
     <nav class="site-nav">
-      <a href="index.html">Index</a>
+      <a href="works.html">Index</a>
       <a href="bio.html">Bio</a>
     </nav>
   </header>
@@ -33,18 +43,18 @@
        每一项 = 一屏，按从上到下的顺序排列：
          file : 文件名，放在 assets/images/landing/ 里（大小写必须与实际文件一致）
          type : "image" 图片 或 "video" 视频（视频自动静音循环、无控制条）
-         link : 点击这一屏跳转的页面（相对 v2/ 文件夹）
+         link : 点击这一屏跳转的页面（相对网站根目录）
          pos  : 可选，裁切重点，即 CSS object-position。不写 = "center" 居中
                 例如 "left center"、"right top"、"50% 30%"
-         path : 可选，引用 landing 文件夹以外的文件时使用，写完整路径（相对 v2/ 文件夹，
-                以 ../assets/ 开头），例如作品页已有的视频：
-                  path: "../assets/images/projects/iwd/iwd2-web.mp4"
+         path : 可选，引用 landing 文件夹以外的文件时使用，写完整路径（相对网站根目录，
+                以 assets/ 开头），例如作品页已有的视频：
+                  path: "assets/images/projects/iwd/iwd2-web.mp4"
                 写了 path 就不需要 file；不写 path 时照常用 file（默认在 landing 文件夹）
        ---- 手机版（屏幕宽度 ≤ 767px）可选字段，不写 = 手机和电脑用同一个文件 ----
          mobile    : 可选，手机上改用的文件。写法和 path / file 一样：
-                       含 "/" 的当完整路径（相对 v2/，以 ../assets/ 开头），
+                       含 "/" 的当完整路径（相对网站根目录，以 assets/ 开头），
                        只写文件名的从 landing 文件夹里找
-                     例如 mobile: "../assets/images/projects/aloe/4.png"
+                     例如 mobile: "assets/images/projects/aloe/4.png"
                      手机上只下载这个文件，不会再下载电脑版；
                      手机版和电脑版的类型可以不同（电脑版视频、手机版图片也行）：
                      按扩展名自动判断，.mp4 / .webm / .mov / .m4v = 视频，其他 = 图片；
@@ -58,18 +68,19 @@
        无限循环会根据这个列表自动生成，增删、调整顺序都不需要改下面的代码
        ====================================================================== */
     var SLIDES = [
-           { path: "../assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html",
-        mobile: "../assets/images/projects/through_the_stone_2/9.png", mobilePos: "50% 56%" },
-      { path: "../assets/images/projects/Melodic_Echo_Odyssey/preview.png", type: "image", link: "melodic_echo_odyssey.html" },
-      { path: "../assets/images/projects/iwd/iwd2-web.mp4",                 type: "video", link: "nike_iwd.html" },
+           { path: "assets/images/projects/through_the_stone_2/preview.png",  type: "image", link: "through_the_stone.html",
+        mobile: "assets/images/projects/through_the_stone_2/9.png", mobilePos: "50% 56%" },
+      { path: "assets/images/projects/Melodic_Echo_Odyssey/preview.png", type: "image", link: "melodic_echo_odyssey.html" },
+       { path: "assets/images/projects/iwd/iwd2-web.mp4",                 type: "video", link: "nike_iwd.html",
+      mobile: "assets/images/projects/iwd/iwd2-web.mp4", mobilePos: "57% 50%" },
       { file: "vernal_soiree.mp4",                                           type: "video", link: "vernal_soiree.html",
         mobile: "vs-vertical-web.mp4", mobilePos: "50% 50%" },
-      { path: "../assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html",
-                mobile: "../assets/images/projects/aloe/4.png", mobilePos: "60% center" }
+      { path: "assets/images/projects/aloe/preview.png",                 type: "image", link: "aloe.html",
+                mobile: "assets/images/projects/aloe/4.png", mobilePos: "60% center" }
     ];
 
-    // 素材文件夹 media folder (relative to v2/)
-    var MEDIA_DIR = "../assets/images/landing/";
+    // 素材文件夹 media folder (relative to the site root)
+    var MEDIA_DIR = "assets/images/landing/";
 
     /* ---- endless loop ------------------------------------------------------
        DOM order: [copy of last] + the real slides + [copy of first]. The copies
@@ -110,7 +121,7 @@
 
       // The <img>/<video> for an item, desktop or phone version.
       function makeMedia(item, i, entry, phone) {
-        var src = item.path || (MEDIA_DIR + item.file);    // path (full, relative to v2/) wins
+        var src = item.path || (MEDIA_DIR + item.file);    // path (full, relative to the site root) wins
         var type = item.type;
         if (phone) {
           src = item.mobile.indexOf("/") !== -1 ? item.mobile : MEDIA_DIR + item.mobile;

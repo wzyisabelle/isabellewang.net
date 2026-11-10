@@ -5,8 +5,8 @@ Columns: Title | Year | Medium | Link | Thumbnail
 - Keep the header row and the `|---|` separator row in each table.
 - To add a work: copy a row and edit it. To remove: delete the row. To reorder: move the row up/down.
 - Empty cells are allowed. A row with an empty Link is shown but not clickable.
-- Link is relative to this folder (v2/), e.g. `aloe.html`.
-- Thumbnail is just the filename; it is loaded from `../assets/thumbnails/`.
+- Link is relative to the site root, e.g. `aloe.html`.
+- Thumbnail is just the filename; it is loaded from `assets/thumbnails/`.
 
 ## Art Work
 

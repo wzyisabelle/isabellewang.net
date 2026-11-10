@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- GitHub Pages shows this page at any missing address, at any folder depth:
+       every path here starts with "/" so it works from all of them -->
+  <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+  <title>Page not found | Isabelle Wang</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preload" href="/assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* 404 only: one short message under the header, same inset and type as the Index rows */
+    .not-found {
+      padding: var(--list-top-gap) var(--content-margin) 0;
+      font-size: var(--fs-row);
+      font-weight: var(--fw-light);
+      line-height: 1.4;
+    }
+    .not-found p { margin: 0 0 var(--row-pad-y); }
+    .not-found a { color: inherit; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">iSABELLE WANG</a>
+    <nav class="site-nav">
+      <a href="/works.html">Index</a>
+      <a href="/bio.html">Bio</a>
+    </nav>
+  </header>
+
+  <main class="not-found">
+    <p>Page not found.</p>
+    <p><a href="/">Back to home</a></p>
+  </main>
+</body>
+</html>

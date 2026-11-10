@@ -13,7 +13,7 @@
 }
 
 /* opt this page into cross-document transitions (skipped by JS unless the
-   visitor clicked through from landing.html); off for reduced motion */
+   visitor clicked through from the landing page); off for reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;

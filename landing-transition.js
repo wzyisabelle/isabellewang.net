@@ -3,7 +3,7 @@
    Cross-document View Transitions: the clicked landing slide's image morphs
    into the work page's top hero image while the header stays put.
 
-   Loaded by landing.html and by each work page that takes part (only
+   Loaded by the landing page (index.html) and by each work page that takes part (only
    nike_iwd.html today). Pages opt in with @view-transition in
    landing.css / landing-transition.css; every other page lacks that rule, so
    navigations to or from them never animate.
@@ -24,6 +24,8 @@
     try { return new URL(url, location.href).pathname.split("/").pop(); }
     catch (e) { return ""; }
   }
+  // the landing page is index.html, usually reached as the bare site root ("/")
+  function isLanding(file) { return file === "" || file === "index.html"; }
   function reducedMotion() {
     return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
@@ -61,11 +63,11 @@
   function arrival() {
     var act = window.navigation && navigation.activation;
     if (act) {
-      return { type: act.navigationType, from: act.from ? fileOf(act.from.url) : "" };
+      return { type: act.navigationType, from: act.from ? fileOf(act.from.url) : null };
     }
     var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
     var t = restored ? "back_forward" : (nav ? nav.type : "navigate");   // navigate | reload | back_forward
-    return { type: t === "navigate" ? "push" : t, from: document.referrer ? fileOf(document.referrer) : "" };
+    return { type: t === "navigate" ? "push" : t, from: document.referrer ? fileOf(document.referrer) : null };
   }
 
   /* ---- landing page (old document) ------------------------------------- */
@@ -125,7 +127,7 @@
     var hero = document.getElementById("page-hero");
     // Only a fresh click from landing animates; reload, Back/Forward, index,
     // Previous/Next and direct visits are skipped.
-    if (a.type !== "push" || a.from !== "landing.html" || !hero || reducedMotion() || phone()) {
+    if (a.type !== "push" || !isLanding(a.from) || !hero || reducedMotion() || phone()) {
       skip(e.viewTransition);
       settle();
       return;

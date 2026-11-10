@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="../assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png" />
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon/favicon32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <title>Nike IWD 2023 | Isabelle Wang</title>
+  <!-- 分享预览（LinkedIn、邮件、社交平台） -->
+  <meta name="description" content="A series of short-form videos created for International Women&#x27;s Day, using a fitness-driven narrative to inspire women to feel confident and empowered in…" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://isabellewang.net/nike_iwd.html" />
+  <meta property="og:title" content="Nike IWD 2023 | Isabelle Wang" />
+  <meta property="og:description" content="A series of short-form videos created for International Women&#x27;s Day, using a fitness-driven narrative to inspire women to feel confident and empowered in…" />
+  <meta property="og:image" content="https://isabellewang.net/assets/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <!-- header fonts: fetch at once so the first frame already uses Rubik (no fallback flash) -->
-  <link rel="preload" href="../assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/Rubik/Rubik-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="work.css" />
   <!-- seamless transition from the landing slide (experiment) -->
@@ -20,10 +30,10 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="landing.html">iSABELLE WANG</a>
+    <a class="brand" href="./">iSABELLE WANG</a>
     <span class="page-title">Nike IWD 2023</span>
     <nav class="site-nav">
-      <a href="index.html">Index</a>
+      <a href="works.html">Index</a>
       <a href="bio.html">Bio</a>
     </nav>
   </header>
@@ -32,7 +42,7 @@
 
     <!-- 1. iwd2 hero — one full screen, cropped to fit (.hero-fill), autoplay muted loop, no controls -->
    <section class="module-full hero-fill">
-      <video id="page-hero" src="../assets/images/projects/iwd/iwd2-web.mp4" autoplay muted loop playsinline></video>
+      <video id="page-hero" src="assets/images/projects/iwd/iwd2-web.mp4" autoplay muted loop playsinline></video>
     </section>
 
     <!-- 2. text row: body (cols 1-2 minus a unit margin) + year info (col 3) -->
@@ -50,16 +60,16 @@
 
     <!-- 3. three vertical videos (controls, sound on, not autoplay), gap above = one unit distance -->
     <section class="module-grid gap-content">
-      <video controls playsinline preload="metadata" poster="../assets/images/projects/iwd/alatebra.png" src="../assets/images/projects/iwd/alatebra-crf23.mp4"></video>
-      <video controls playsinline preload="metadata" poster="../assets/images/projects/iwd/yoga.png" src="../assets/images/projects/iwd/yoga-crf23.mp4"></video>
-      <video controls playsinline preload="metadata" poster="../assets/images/projects/iwd/bouldering.png" src="../assets/images/projects/iwd/bouldering-crf23.mp4"></video>
+      <video controls playsinline preload="metadata" poster="assets/images/projects/iwd/alatebra.png" src="assets/images/projects/iwd/alatebra-crf23.mp4"></video>
+      <video controls playsinline preload="metadata" poster="assets/images/projects/iwd/yoga.png" src="assets/images/projects/iwd/yoga-crf23.mp4"></video>
+      <video controls playsinline preload="metadata" poster="assets/images/projects/iwd/bouldering.png" src="assets/images/projects/iwd/bouldering-crf23.mp4"></video>
     </section>
 
     <!-- 4. BEHIND THE SCENE -->
     <section class="module-grid module-behind">
       <h2 class="work-heading span-2">BEHIND THE SCENE</h2>
       <figure class="behind-figure span-2">
-        <img src="../assets/images/projects/iwd/wrap.jpg" alt="">
+        <img src="assets/images/projects/iwd/wrap.jpg" alt="">
         <figcaption class="work-caption">It's a WRAP!</figcaption>
       </figure>
     </section>
