@@ -29,9 +29,9 @@
   function reducedMotion() {
     return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
-  // 手机（≤ 767px）不播放无缝过渡，直接打开作品页（与 landing-entry.js 相同的宽度判断）
+  // 手机（≤ 767px）或竖屏不播放无缝过渡，直接打开作品页（与 landing-entry.js、landing 选竖版素材的条件相同）
   function phone() {
-    return window.matchMedia && matchMedia("(max-width: 767px)").matches;
+    return window.matchMedia && matchMedia("(max-width: 767px), (orientation: portrait)").matches;
   }
   function header() { return document.querySelector(".site-header"); }
   function clearNames() {

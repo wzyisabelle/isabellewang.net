@@ -52,9 +52,9 @@
   function store(fn) {          // sessionStorage can throw (private mode, blocked storage)
     try { return fn(window.sessionStorage); } catch (e) { return null; }
   }
-  // 手机（≤ 767px）不执行入场自动滚动，作品页直接停在顶部
+  // 手机（≤ 767px）或竖屏（例如 iPad 竖着拿）不执行入场自动滚动，作品页直接停在顶部（和 landing 选竖版素材的条件一致）
   function phone() {
-    return window.matchMedia && matchMedia("(max-width: 767px)").matches;
+    return window.matchMedia && matchMedia("(max-width: 767px), (orientation: portrait)").matches;
   }
 
   /* ---- landing: write the flag on a plain click into an ENTRY_PAGES slide */
